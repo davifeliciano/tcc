@@ -1,20 +1,20 @@
 \documentclass[
-	% --- Opções da classe memoir ---
-	12pt,											% Tamanho da fonte
-	% openright,							% Capítulos começam em página ímpar (insere página vazia caso preciso)
-	oneside,									% Para impressão em verso e anverso. Oposto a oneside
-	a4paper,									% Tamanho do papel
-	% --- opções da classe abntex2 ---
-	% chapter=TITLE,					% Títulos de capítulos convertidos em letras maiúsculas
-	% section=TITLE,					% Títulos de seções convertidos em letras maiúsculas
-	% subsection=TITLE,				% Títulos de subseções convertidos em letras maiúsculas
-	% subsubsection=TITLE,		% Títulos de subsubseções convertidos em letras maiúsculas
-	% --- opções do pacote babel ---
-	% english,								% Idioma adicional para hifenização
-	% french,									% Idioma adicional para hifenização
-	% spanish,								% Idioma adicional para hifenização
-	portuguese,
-	brazil										% O último idioma é o principal do documento
+  % --- Opções da classe memoir ---
+  12pt,											% Tamanho da fonte
+  % openright,							% Capítulos começam em página ímpar (insere página vazia caso preciso)
+  oneside,									% Para impressão em verso e anverso. Oposto a oneside
+  a4paper,									% Tamanho do papel
+  % --- opções da classe abntex2 ---
+  % chapter=TITLE,					% Títulos de capítulos convertidos em letras maiúsculas
+  % section=TITLE,					% Títulos de seções convertidos em letras maiúsculas
+  % subsection=TITLE,				% Títulos de subseções convertidos em letras maiúsculas
+  % subsubsection=TITLE,		% Títulos de subsubseções convertidos em letras maiúsculas
+  % --- opções do pacote babel ---
+  % english,								% Idioma adicional para hifenização
+  % french,									% Idioma adicional para hifenização
+  % spanish,								% Idioma adicional para hifenização
+  portuguese,
+  brazil										% O último idioma é o principal do documento
 ]{abntex2}
 
 % ---
@@ -34,6 +34,7 @@
 \usepackage{graphicx}								% Inclusão de gráficos
 \usepackage{microtype} 							% Para melhorias de justificação
 \usepackage{amsmath}
+\usepackage{nicefrac}
 
 \newtheorem{teo}{Teorema}[chapter]
 \newtheorem{exer}{Exercício}
@@ -52,18 +53,9 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\C}{\mathbb{C}}
-\newcommand{\Migual}{\geqslant}
-\newcommand{\migual}{\leqslant}
-\newcommand{\PP}{\mathscr{P}}
-\newcommand{\CC}{\mathscr{C}}
-\newcommand{\LL}{\mathscr{L}}
-\newcommand{\fler}{\Rightarrow}
-\newcommand{\flel}{\Leftarrow}
-\newcommand{\seta}{\longrightarrow}
-\newcommand{\equi}{\Leftrightarrow}
-\newcommand{\al}{\alpha}
-\newcommand{\sen}{\textrm{sen}}
 \newcommand{\trav}{\,---\,}
+\newcommand{\mathperiod}{\;\mathrm{.}}
+\newcommand{\mathcomma}{\;\mathrm{,}}
 
 
 % ---
@@ -79,7 +71,8 @@
 % Pacotes de citações
 % ---
 % \usepackage[brazilian,hyperpageref]{backref}	 				% Paginas com as citações na bibl
-\usepackage[versalete]{abntex2cite}                    	% Citações padrão ABNT
+\usepackage[num,overcite]{abntex2cite}                  % Citações padrão ABNT
+\citebrackets()
 
 % ---
 % CONFIGURAÇÕES DE PACOTES
@@ -112,19 +105,19 @@
 % Informações do PDF
 \makeatletter
 \hypersetup{
-	% pagebackref=true,
-	pdftitle={\@title},
-	pdfauthor={\@author},
-	pdfsubject={\imprimirpreambulo},
-	pdfcreator={LaTeX with abnTeX2},
-	% pdfkeywords={CUDA}{autovalores}{autovetores}{diagonalização},
-	colorlinks=true,       		% false: boxed links; true: colored links
-	linkcolor=blue,          	% color of internal links
-	citecolor=blue,        		% color of links to bibliography
-	filecolor=magenta,      	% color of file links
-	urlcolor=blue,
-	bookmarksdepth=4,
-	hidelinks
+  % pagebackref=true,
+  pdftitle={\@title},
+  pdfauthor={\@author},
+  pdfsubject={\imprimirpreambulo},
+  pdfcreator={LaTeX with abnTeX2},
+  % pdfkeywords={CUDA}{autovalores}{autovetores}{diagonalização},
+  colorlinks=true,       		% false: boxed links; true: colored links
+  linkcolor=blue,          	% color of internal links
+  citecolor=blue,        		% color of links to bibliography
+  filecolor=magenta,      	% color of file links
+  urlcolor=blue,
+  bookmarksdepth=4,
+  hidelinks
 }
 \makeatother
 
@@ -146,7 +139,45 @@
 
 \usepackage{xifthen} % provides \isempty command below
 \newcommand{\epiauthor}[2][]{%
-	\ifthenelse{\isempty{#1}}%
-	{\textnormal{\textsc{---#2}}}% if #1 is empty
-	{\textnormal{\textsc{---#2}}, #1}% if #1 is not empty
+  \ifthenelse{\isempty{#1}}%
+  {\textnormal{\textsc{---#2}}}% if #1 is empty
+  {\textnormal{\textsc{---#2}}, #1}% if #1 is not empty
+}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{shapes.geometric,shapes.symbols,shapes.misc}
+\tikzset{
+  start_end/.style={
+      draw,
+      rectangle,
+      rounded corners,
+      text width=3cm, draw,
+      minimum height=1.6cm,
+      text centered,
+    },
+  process/.style={
+      text width=3cm, draw,
+      minimum height=1.6cm,
+      text centered,
+    },
+  decision/.style={
+      diamond,
+      aspect=2,
+      text width=3cm, draw,
+      minimum height=1.6cm,
+      text centered,
+    },
+  description/.style={
+      text centered,
+      text width=5cm,
+    },
+  myarrow/.style={
+      postaction={
+          decorate, decoration={
+              markings,mark=at position #1 with {\arrow{Stealth};}
+            }
+        }
+    },
 }

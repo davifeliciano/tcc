@@ -1,3 +1,124 @@
 \chapter{Introdução}\label{cap_introducao}
 
-Escreva a introdução aqui.
+\section{Problemas de Otimização}
+
+Em matemática e ciência da computação, problemas de otimização consistem naqueles em que
+a solução é um elemento de um conjunto de candidatos que melhor satisfaz uma determinada
+série de condições. Um exemplo clássico dessa classe é o problema da mochila 
+(\textit{knapsack problem}, em inglês)\cite{knapsack_wiki}, no qual
+procura-se, dentre um conjunto de itens com diversos preços e pesos, o subconjunto que
+maximiza o valor total. Esse valor é calculado somando-se os preços dos itens postos na
+mochila. 
+
+Entretanto a solução deve respeitar um vínculo: o peso total dos objetos escolhidos
+não deve exceder o peso máximo suportado pela mochila. Tal problema não é NP-completo, e,
+ainda que seja possível encontrar a solução exata usando algoritmos de programação dinâmica,
+a complexidade de tais algoritmos é $ \mathcal{O} (n w) $, onde $n$ é o número de itens e $w$ é a
+capacidade da bolsa. Assim, o tempo de execução para muitos itens\trav que é o caso de interesse,
+usualmente\trav pode ser mais longo do que o desejado.
+
+Outro exemplo comum de problema de otimização é o de otimização numérica, do qual constituem
+solução os pontos de máximo ou mínimo global de uma função 
+$ f : \R^n \rightarrow \R $. Tomemos como exemplo simples a função
+\begin{equation}
+  f(x, y) = \cos^2(n\pi r)\exp\left(-\frac{r^2}{\sigma^2}\right) \mathcomma
+  \label{eq:damped_cos}
+\end{equation}
+definida no domínio $ [-1, 1] \times [-1, 1] $, cujo gráfico se encontra na figura \ref{fig:damped_cos}. 
+Analiticamente é fácil determinar o ponto de máximo global em $ r = 0 $ usando métodos de cálculo
+para funções de múltiplas variáveis. 
+
+Contudo, não é sempre que pode-se dispor de tal facilidade. 
+Nos casos em que a função objetivo é de maior complexidade, com domínio contido espaços de maior dimensão; 
+em que a função tem evolução temporal; em que a função possui diversas descontinuidades; ou em que a função
+depende de variáveis aleatórias, o problema se torna impraticável de resolver de forma analítica. 
+Isto posto, como desenvolver um algoritmo para encontrar a solução?
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{imagens/figura1.png}
+  \caption{Gráfico da função definida na equação \ref{eq:damped_cos}, com $ n = 9 $ e $ \sigma = 0,4 $.}
+  \label{fig:damped_cos}
+\end{figure}
+
+Uma classe de algoritmos mais simples que se propõem a resolver esse problema é são os algoritmos do
+tipo \textit{hill climbing}. Sugerido pelo nome, o funcionamento desses algoritmos consiste, resumidamente,
+em sortear um ponto inicial no domínio da função, calcular o gradiente da função no ponto, e seguir
+na direção resultante por uma distância pré-definida, e repetir esses passos até que o módulo do
+vetor gradiente seja próximo de zero, respeitando uma tolerância previamente determinada. 
+
+O problema com esse tipo de algoritmo é que, quando aplicado em funções como a definida anteriormente, a tendência é
+de que a solução encontrada seja um máximo local na grande maioria das vezes. No caso da função definida
+pela equação \ref{eq:damped_cos}, o máximo local só seria encontrado pelo algoritmo se o ponto inicial
+fosse tal que $ r < \nicefrac{1}{2n} $. Se os pontos iniciais do algoritmo forem gerados aleatoriamente,
+para a domínio definido, a probabilidade de um ponto pertencer a esta região é $ P(n) = \nicefrac{\pi}{16n^2} $.
+Para $ n = 9 $, como na figura \ref{fig:damped_cos}, $ P \approx 0,2\% $. 
+
+Ademais, é possível que esse tipo
+de algoritmo indique erroneamente como solução pontos de sela e planícies em determinados casos, o que o
+torna ainda menos eficaz para o propósito.
+
+Uma outra categoria de algoritmos que podem resolver ambos os problemas de forma rápida e chegar a uma
+solução que se aproxima o suficiente da solução exata são os algoritmos genéticos. Tais algoritmos,
+quando bem implementados podem chegar a uma solução aproximada para o problema da mochila de forma
+rápida para valores de $n$ e $w$ ordens de grandeza superiores aos que tornariam praticável o uso da
+estratégia proposta anteriormente. 
+
+No problema de otimização numérica, um algoritmo desse tipo é vantajoso pois é capaz de chegar na solução
+de forma rápida na maioria dos casos, identificando não só o máximo global, como também os máximos
+locais contidos na região de busca. Outra vantagem é que esse método pode ser aplicado sem problemas
+em espaços de busca com grande número de dimensões, ou em funções não estacionárias, contínuas ou
+descontínuas. Além disso, como será mostrado posteriormente, o algoritmo é paralelizável, o que pode
+acelerar a obtenção de uma solução.
+
+\section{O Algoritmo Genético}
+
+Os algoritmos genéticos foram primeiramente desenvolvidos por John H. 
+Holland\cite{holland1992ga}\cite{holland_wiki} na década de 60. Levam esse nome pois sua formulação teve como 
+forte influência o processo de evolução natural que fomenta a origem das espécies desde o surgimento da vida
+em nosso planeta. Em sua execução, é inicializada uma população de indivíduos da mesma espécie\footnote{
+  Isso significa que seus respectivos códigos genéticos possuem a mesma estrutura: mesma número de
+  cromossomos com uma mesma quantidade de genes. Assim, pode haver reprodução entre tais indivíduos.
+}.
+Cada indivíduo corresponde a um candidato a solução do problema de otimização proposto, e tem sua
+identidade codificada pelo seu material genético\footnote{
+  No caso do problema da mochila, por exemplo, uma
+  estrutura natural para o material genético é um cromossomo binário, com $n$ genes, cada um correspondente
+  a um objeto do problema. Por outro lado, no problema de otimização numérica, dois cromossomos seriam
+  necessários, um para codificar cada coordenada em cada dimensão do espaço de busca.
+}.
+
+Então, sob algum critério, é selecionada uma parcela desses indivíduos, a qual dará origem a novos
+descendentes, cujos cromossomos serão gerados pela recombinação dos cromossomos correspondentes nos
+pais. Nesse passo é introduzida uma probabilidade de mutação nos genes dos filhos. 
+
+Ao final desse processo, descarta-se a parcela não selecionada da população, dando origem a uma nova geração, formada
+pelos pais seus filhos. Esse processo é repetido iterativamente até que uma condição de parada seja
+atingida. Essa condição pode ser imposta sobre o número de gerações ou sobre o tempo de execução do programa,
+por exemplo.
+
+Respeitando as diferenças de implementação em cada passo, devido as peculiaridades de cada tipo de problema
+de otimização proposto, essas etapas são presentes em todo algoritmo genético, e são bem resumidas no fluxograma
+presente na figura \ref{fig:ga_flow}.
+
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+    \node[start_end] (start) {Início};
+    \node[process, below=1em of start] (init_pop) {População\\ Inicial};
+    \node[process, below=1em of init_pop]  (selection) {Seleção};
+    \node[process, below=1em of selection]  (crossover) {Recombinação};
+    \node[process, below=1em of crossover]  (mutation) {Mutação};
+    \node[decision, below=1em of mutation]  (check) {Condição atingida?};
+    \node[start_end, left=10ex of check] (end) {Fim};
+    \draw[myarrow=.9] (start.south) --  (init_pop.north);
+    \draw[myarrow=.9] (init_pop.south) --  (selection.north);
+    \draw[myarrow=.9] (selection.south) --  (crossover.north);
+    \draw[myarrow=.9] (crossover.south) --  (mutation.north);
+    \draw[myarrow=.9] (mutation.south) -- (check.north);
+    \draw[myarrow=.9] (check.east) -- node[description, above] {Não} ([xshift=10ex]check.east) |- (selection.east);
+    \draw[myarrow=.9] (check.west) -- node[description, above] {Sim} (end.east);
+  \end{tikzpicture}
+  \caption{Fluxograma geral de um algoritmo genético.}
+  \label{fig:ga_flow}
+\end{figure}

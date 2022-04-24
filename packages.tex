@@ -34,6 +34,7 @@
 \usepackage{graphicx}               % Inclusão de gráficos
 \usepackage{microtype}              % Para melhorias de justificação
 \usepackage{amsmath}
+\usepackage{mathtools}
 \usepackage{nicefrac}
 
 \newtheorem{teo}{Teorema}[chapter]
@@ -56,6 +57,7 @@
 \newcommand{\trav}{\,---\,}
 \newcommand{\mathperiod}{\;\mathrm{.}}
 \newcommand{\mathcomma}{\;\mathrm{,}}
+\newcommand{\mathdots}{\;\cdots\;}
 
 
 % ---
@@ -178,5 +180,19 @@
               markings,mark=at position #1 with {\arrow{Stealth};}
             }
         }
+    },
+}
+
+\usetikzlibrary{chains,fit,calc}
+\edef\sizetape{0.7cm}
+\tikzset{
+  gene/.style={
+      draw,
+      minimum size=\sizetape,
+    },
+  gene_filled/.style={
+      draw,
+      fill=black!35,
+      minimum size=\sizetape,
     },
 }

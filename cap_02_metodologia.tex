@@ -1,3 +1,126 @@
 \chapter{Metodologia}\label{cap_metodologia}
 
-Escreva a metodologia aqui.
+\section{Codificação}
+
+\newcommand{\ak}[1]{a^{(k)}_{#1}}
+\newcommand{\xk}[1]{x^{(k)}_{#1}}
+\newcommand{\xmin}[1]{x^{(min)}_{#1}}
+\newcommand{\xmax}[1]{x^{(max)}_{#1}}
+
+Seja uma população de $n$ indivíduos representada pelo conjunto
+\begin{equation}
+  A = \left\{ A_1\;, \mathdots,  \;A_k\;, \mathdots, \;A_n \right\} \mathcomma
+\end{equation}
+onde cada indivíduo tem seu código genético representado por $m$ cromossomos
+de $l$ bits, de forma que, usando uma notação matricial,
+\begin{equation}
+  A_k = \left[
+    \begin{matrix}
+      \ak{11} & \cdots & \ak{1m} \\
+      \vdots  & \ddots & \vdots  \\
+      \ak{l1} & \cdots & \ak{lm} \\
+    \end{matrix}
+    \right]
+  \mathcomma
+\end{equation}
+onde $ \ak{ij} \in \{0,1\} $, sendo $i$, $j$ e $k$ inteiros tais que
+$ i \in \left[ 0, l \right] $, $ j \in \left[ 0, m \right] $ e $ k \in \left[ 0, n \right] $.
+
+Para um problema de otimização numérica de uma função $ f : \mathcal{C} \subseteq \R^n \rightarrow \R $,
+deve existir um mapa injetivo entre $ \mathbf{A} $ e o conjunto
+\begin{equation}
+  X = \left\{ X_1 \; , \mathdots,  \; X_k \; , \mathdots, \; X_n \right\} \mathcomma
+\end{equation}
+onde
+\begin{equation}
+  X_k = \left( \xk{1}, \mathdots, \; \xk{j}, \mathdots, \; \xk{m} \right)
+\end{equation}
+são vetores de $ \R^n $ e representam a posição do respectivo indivíduo no espaço de busca.
+Tal espaço é um subconjunto de $ \mathcal{C} $ definido pelo produto cartesiano
+\begin{equation}
+  \mathcal{S} = \bigtimes_{j = 1}^m \; [ \xmin{j} \; , \; \xmax{j} ] \mathcomma
+\end{equation}
+sendo $ \xmin{j} $ e $ \xmax{j} $, respectivamente, os valores mínimo e máximo para
+a coordenada $ \xk{j} $.
+
+Como $l$ bits são capazes de representar números naturais em $ [0, 2^l) $,
+uma forma natural de mapear tal intervalo
+em $ [ \xmin{j} \; , \; \xmax{j} ] $ é
+\begin{equation}
+  x^{(k)}_j = \xmin{j} + \frac{\xmax{j} - \xmin{j}}{2^l - 1} \sum_{i = 1}^l \ak{ij} 2^{i - 1} \mathcomma
+\end{equation}
+cuja relação inversa é determinada por
+\begin{equation}
+  \sum_{i = 1}^l \ak{ij} 2^{i - 1} =
+  \left\lfloor \frac{(\xk{j} - \xmin{j})(2^l - 1)}{\xmax{j} - \xmin{j}} \right\rfloor
+  \mathperiod
+\end{equation}
+
+\newpage
+\section{Seleção}
+
+Para o processo de seleção é introduzida uma nova função, denominada função desempenho.
+Tal função é alguma função $ g : \R \rightarrow \R $ a partir da qual se calcula a probabilidade
+de seleção do indivíduo $k$
+\begin{equation}
+  P_k = \frac{g(f(X_k))}{\sum_{j = 1}^n g(f(X_j))} \mathperiod
+\end{equation}
+
+Existe uma liberdade para a escolha da função desempenho, desde que se respeite a condição a
+função seja sempre positiva. A ideia é que se escolha uma função desempenho que
+selecione os melhores indivíduos, mas ainda mantenha uma boa variedade genética na
+próxima geração. Assim, em toda geração, em média, haverá indivíduos em todo o espaço
+de busca, evitando que a solução convirja de forma muito rápida\footnote{
+  Retomando a função usada como exemplo no capítulo anterior, definida na equação
+  \ref{eq:damped_cos}, se escolhermos uma função de desempenho que privilegie
+  de forma desproporcional pontos onde o valor da função é maior. Dependendo da
+  distribuição inicial dos indivíduos, é possível que após algumas gerações,
+  toda a população se concentre em $ r = \nicefrac{1}{2n} $, que é um
+  máximo local.
+}.
+
+\newcommand{\fmin}{f_{min}}
+\newcommand{\fmax}{f_{max}}
+
+\begin{equation}
+  a =
+  \begin{cases}
+    \frac{\mu (h - 1)}{\fmax - \mu} \;, & \text{se } \fmin > \frac{h\mu - \fmax}{h - 1} \\
+    \frac{\mu}{\mu - \fmin}         \;, & \text{caso contrário}
+  \end{cases}
+  \label{eq:linear_fit_a}
+\end{equation}
+\begin{equation}
+  b =
+  \begin{cases}
+    \frac{\mu (\fmax - h\mu)}{\fmax - \mu} \;, & \text{se } \fmin > \frac{h\mu - \fmax}{h - 1} \\
+    - \frac{\mu\fmin}{\mu - \fmin}         \;, & \text{caso contrário}
+  \end{cases}
+  \label{eq:linear_fit_b}
+\end{equation}
+
+Nesse trabalho a função desempenho usada foi uma função linear $ g(x) = ax + b $
+sendo $a$ e $b$ definidos pelas equações \ref{eq:linear_fit_a} e \ref{eq:linear_fit_b},
+onde
+\begin{equation}
+  \fmin = \min_{X_k \in X} f(X_k) \mathcomma
+\end{equation}
+\begin{equation}
+  \fmax = \max_{X_k \in X} f(X_k) \mathcomma
+\end{equation}
+$h$ é um parâmetro real maior que $1$ e $\mu$ é a média do valor de $f$ sobre a população, dada por
+\begin{equation}
+  \mu = \sum_{k = 1}^n \frac{f(X_k)}{n} \mathperiod
+\end{equation}
+
+A seleção do indivíduos que serão recombinados para formar a geração seguinte é feita por meio
+de uma roleta simples, permitindo ou não repetições. São feitos $ \nicefrac{n}{2} $ sorteios,
+já que para cada par de indivíduos recombinados, dois novos serão gerados\footnote{
+  Por esse motivo, $n$ deve ser um múltiplo de 4.
+}.
+Desse modo, a geração subsequente será constituída pelos indivíduos pais selecionados e os seus
+respectivos filhos, seguindo com $n$ indivíduos.
+
+\section{Recombinação e Mutação}
+
+\input{cap_02_diagrama_recomb.tex}

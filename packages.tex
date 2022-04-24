@@ -183,7 +183,7 @@
     },
 }
 
-\usetikzlibrary{chains,fit,calc}
+\usetikzlibrary{chains,fit,calc,patterns}
 \edef\sizetape{0.7cm}
 \tikzset{
   gene/.style={
@@ -193,6 +193,12 @@
   gene_filled/.style={
       draw,
       fill=black!35,
+      minimum size=\sizetape,
+    },
+  gene_mutated/.style={
+      draw,
+      pattern=north west lines,
+      pattern color=black!25,
       minimum size=\sizetape,
     },
 }

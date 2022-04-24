@@ -1,102 +1,109 @@
 \begin{figure}
   \centering
-  \begin{tikzpicture}
-    \def\verticalmargin{1.3}
-    \begin{scope}[local bounding box=fig1]
-      \begin{scope}[start chain=1 going right,node distance=-0.15mm]
-        \node [on chain=1,gene] (parent_1_left)     {0};
-        \node [on chain=1,gene] (recomb_point_1_up) {0};
-        \node [on chain=1,gene_filled]              {1};
-        \node [on chain=1,gene_filled]              {0};
-        \node [on chain=1,gene_filled]              {1};
-        \node [on chain=1,gene_filled]              {1};
-        \node [on chain=1,gene] (recomb_point_2_up) {0};
-        \node [on chain=1,gene] (parent_1_right)    {1};
-        \node [left=of parent_1_left] {$P_1$};
+  \resizebox*{\textwidth}{!}{
+    \begin{tikzpicture}
+      \def\verticalmargin{1.3}
+      \begin{scope}[local bounding box=fig1]
+        \begin{scope}[start chain=1 going right,node distance=-0.15mm]
+          \node [on chain=1,gene] (parent_1_left)     {0};
+          \node [on chain=1,gene] (recomb_point_1_up) {0};
+          \node [on chain=1,gene_filled]              {1};
+          \node [on chain=1,gene_filled]              {0};
+          \node [on chain=1,gene_filled]              {1};
+          \node [on chain=1,gene_filled]              {1};
+          \node [on chain=1,gene] (recomb_point_2_up) {0};
+          \node [on chain=1,gene] (parent_1_right)    {1};
+          \node [left=of parent_1_left] {$S_k$};
+        \end{scope}
+        \begin{scope}[start chain=1 going right,node distance=-0.15mm, shift={(0,-\verticalmargin)}]
+          \node [on chain=1,gene] (mask_left)  {0};
+          \node [on chain=1,gene]              {0};
+          \node [on chain=1,gene]              {1};
+          \node [on chain=1,gene]              {1};
+          \node [on chain=1,gene]              {1};
+          \node [on chain=1,gene]              {1};
+          \node [on chain=1,gene]              {0};
+          \node [on chain=1,gene] (mask_right) {0};
+          \node [left=of mask_left] {$R$};
+        \end{scope}
+        \begin{scope}[start chain=1 going right,node distance=-0.15mm, shift={(0,-2*\verticalmargin)}]
+          \node [on chain=1,gene_filled] (parent_2_left)       {1};
+          \node [on chain=1,gene_filled] (recomb_point_1_down) {1};
+          \node [on chain=1,gene]                              {1};
+          \node [on chain=1,gene]                              {1};
+          \node [on chain=1,gene]                              {1};
+          \node [on chain=1,gene]                              {0};
+          \node [on chain=1,gene_filled] (recomb_point_2_down) {1};
+          \node [on chain=1,gene_filled] (parent_2_right)      {0};
+          \node [left=of parent_2_left] {$S_{k + 1}$};
+        \end{scope}
+        \begin{scope}[start chain=1 going right,node distance=-0.15mm, shift={(0,-3*\verticalmargin)}]
+          \node [on chain=1,gene_mutated] (mutation_left) {1};
+          \node [on chain=1,gene]                         {0};
+          \node [on chain=1,gene]                         {0};
+          \node [on chain=1,gene]                         {0};
+          \node [on chain=1,gene]                         {0};
+          \node [on chain=1,gene]                         {0};
+          \node [on chain=1,gene]                         {0};
+          \node [on chain=1,gene]                         {0};
+          \node [left=of mutation_left] {$M$};
+        \end{scope}
+        \draw ($(fig1.north west)+(0,0.85)$) rectangle ($(fig1.south east)+(0.15,-0.15)$);
+        \draw [densely dotted] (recomb_point_1_up.east) -- (recomb_point_1_down.east);
+        \draw [densely dotted] (recomb_point_2_up.west) -- (recomb_point_2_down.west);
+        \node [description, font=\tiny, above=1.5ex of recomb_point_1_up.east] {Ponto de\\ Recombinação};
       \end{scope}
-      \begin{scope}[start chain=1 going right,node distance=-0.15mm, shift={(0,-\verticalmargin)}]
-        \node [on chain=1,gene] (mask_left)  {0};
-        \node [on chain=1,gene]              {0};
-        \node [on chain=1,gene]              {1};
-        \node [on chain=1,gene]              {1};
-        \node [on chain=1,gene]              {1};
-        \node [on chain=1,gene]              {1};
-        \node [on chain=1,gene]              {0};
-        \node [on chain=1,gene] (mask_right) {0};
-        \node [left=of mask_left] {$R$};
+      \begin{scope}[xshift=21em, local bounding box=fig2]
+        \begin{scope}[start chain=1 going right,node distance=-0.15mm]
+          \node [on chain=1,gene_mutated] (mut_offspring_1_left) {1};
+          \node [on chain=1,gene]                                {0};
+          \node [on chain=1,gene]                                {1};
+          \node [on chain=1,gene]                                {1};
+          \node [on chain=1,gene]                                {1};
+          \node [on chain=1,gene]                                {0};
+          \node [on chain=1,gene]                                {0};
+          \node [on chain=1,gene] (mut_offspring_1_right)        {1};
+        \end{scope}
+        \begin{scope}[start chain=1 going right,node distance=-0.15mm, shift={(0,-1*\verticalmargin)}]
+          \node [on chain=1,gene] (offspring_1_left)  {0};
+          \node [on chain=1,gene]                     {0};
+          \node [on chain=1,gene]                     {1};
+          \node [on chain=1,gene]                     {1};
+          \node [on chain=1,gene]                     {1};
+          \node [on chain=1,gene]                     {0};
+          \node [on chain=1,gene]                     {0};
+          \node [on chain=1,gene] (offspring_1_right) {1};
+        \end{scope}
+        \begin{scope}[start chain=1 going right,node distance=-0.15mm, shift={(0,-2*\verticalmargin)}]
+          \node [on chain=1,gene_filled] (offspring_2_left)  {1};
+          \node [on chain=1,gene_filled]                     {1};
+          \node [on chain=1,gene_filled]                     {1};
+          \node [on chain=1,gene_filled]                     {0};
+          \node [on chain=1,gene_filled]                     {1};
+          \node [on chain=1,gene_filled]                     {1};
+          \node [on chain=1,gene_filled]                     {1};
+          \node [on chain=1,gene_filled] (offspring_2_right) {0};
+        \end{scope}
+        \begin{scope}[start chain=1 going right,node distance=-0.15mm, shift={(0,-3*\verticalmargin)}]
+          \node [on chain=1,gene_mutated] (mut_offspring_2_left) {0};
+          \node [on chain=1,gene_filled]                         {1};
+          \node [on chain=1,gene_filled]                         {1};
+          \node [on chain=1,gene_filled]                         {0};
+          \node [on chain=1,gene_filled]                         {1};
+          \node [on chain=1,gene_filled]                         {1};
+          \node [on chain=1,gene_filled]                         {1};
+          \node [on chain=1,gene_filled] (mut_offspring_2_right) {0};
+        \end{scope}
+        \path [font=\tiny] (mask_right.east)++(0.15,0) edge node [above] {$(S_k \land R ) \lor (S_{k + 1} \land \lnot R)$} (offspring_1_left.west);
+        \path [font=\tiny] (parent_2_right.east)++(0.15,0) edge node [below] {$(S_k \land \lnot R ) \lor (S_{k + 1} \land R)$} (offspring_2_left.west);
+        \path [font=\tiny] (offspring_1_right.east) edge[bend right=90] node [left] {$\oplus M$} (mut_offspring_1_right.east);
+        \path [font=\tiny] (offspring_2_right.east) edge[bend left=90] node [left] {$\oplus M$} (mut_offspring_2_right.east);
       \end{scope}
-      \begin{scope}[start chain=1 going right,node distance=-0.15mm, shift={(0,-2*\verticalmargin)}]
-        \node [on chain=1,gene_filled] (parent_2_left)       {1};
-        \node [on chain=1,gene_filled] (recomb_point_1_down) {1};
-        \node [on chain=1,gene]                              {1};
-        \node [on chain=1,gene]                              {1};
-        \node [on chain=1,gene]                              {1};
-        \node [on chain=1,gene]                              {0};
-        \node [on chain=1,gene_filled] (recomb_point_2_down) {1};
-        \node [on chain=1,gene_filled] (parent_2_right)      {0};
-        \node [left=of parent_2_left] {$P_2$};
-      \end{scope}
-      \begin{scope}[start chain=1 going right,node distance=-0.15mm, shift={(0,-3*\verticalmargin)}]
-        \node [on chain=1,gene, draw=red, very thick] (mutation_left) {1};
-        \node [on chain=1,gene]                                       {0};
-        \node [on chain=1,gene]                                       {0};
-        \node [on chain=1,gene]                                       {0};
-        \node [on chain=1,gene]                                       {0};
-        \node [on chain=1,gene]                                       {0};
-        \node [on chain=1,gene]                                       {0};
-        \node [on chain=1,gene]                                       {0};
-        \node [left=of mutation_left] {$M$};
-      \end{scope}
-      \draw ($(fig1.north west)+(0,0.85)$) rectangle ($(fig1.south east)+(0.15,-0.15)$);
-      \draw [densely dotted] (recomb_point_1_up.east) -- (recomb_point_1_down.east);
-      \draw [densely dotted] (recomb_point_2_up.west) -- (recomb_point_2_down.west);
-      \node [description, font=\tiny, above=1.5ex of recomb_point_1_up.east] {Ponto de\\ Recombinação};
-    \end{scope}
-    \begin{scope}[xshift=20.4em, local bounding box=fig2]
-      \begin{scope}[start chain=1 going right,node distance=-0.15mm]
-        \node [on chain=1,gene, draw=red, very thick] (mut_offspring_1_left)  {1};
-        \node [on chain=1,gene]                                               {0};
-        \node [on chain=1,gene]                                               {1};
-        \node [on chain=1,gene]                                               {1};
-        \node [on chain=1,gene]                                               {1};
-        \node [on chain=1,gene]                                               {0};
-        \node [on chain=1,gene]                                               {0};
-        \node [on chain=1,gene] (mut_offspring_1_right)                       {1};
-      \end{scope}
-      \begin{scope}[start chain=1 going right,node distance=-0.15mm, shift={(0,-1*\verticalmargin)}]
-        \node [on chain=1,gene] (offspring_1_left)  {0};
-        \node [on chain=1,gene]                     {0};
-        \node [on chain=1,gene]                     {1};
-        \node [on chain=1,gene]                     {1};
-        \node [on chain=1,gene]                     {1};
-        \node [on chain=1,gene]                     {0};
-        \node [on chain=1,gene]                     {0};
-        \node [on chain=1,gene] (offspring_1_right) {1};
-      \end{scope}
-      \begin{scope}[start chain=1 going right,node distance=-0.15mm, shift={(0,-2*\verticalmargin)}]
-        \node [on chain=1,gene_filled] (offspring_2_left)  {1};
-        \node [on chain=1,gene_filled]                     {1};
-        \node [on chain=1,gene_filled]                     {1};
-        \node [on chain=1,gene_filled]                     {0};
-        \node [on chain=1,gene_filled]                     {1};
-        \node [on chain=1,gene_filled]                     {1};
-        \node [on chain=1,gene_filled]                     {1};
-        \node [on chain=1,gene_filled] (offspring_2_right) {0};
-      \end{scope}
-      \begin{scope}[start chain=1 going right,node distance=-0.15mm, shift={(0,-3*\verticalmargin)}]
-        \node [on chain=1,gene_filled, draw=red, very thick] (mut_offspring_2_left)  {0};
-        \node [on chain=1,gene_filled]                                               {1};
-        \node [on chain=1,gene_filled]                                               {1};
-        \node [on chain=1,gene_filled]                                               {0};
-        \node [on chain=1,gene_filled]                                               {1};
-        \node [on chain=1,gene_filled]                                               {1};
-        \node [on chain=1,gene_filled]                                               {1};
-        \node [on chain=1,gene_filled] (mut_offspring_2_right)                       {0};
-      \end{scope}
-      \path [font=\tiny] (mask_right.east)++(0.15,0) edge node [above] {$(P_1 \land R ) \lor (P_2 \land \lnot R)$} (offspring_1_left.west);
-      \path [font=\tiny] (parent_2_right.east)++(0.15,0) edge node [below] {$(P_1 \land \lnot R ) \lor (P_2 \land R)$} (offspring_2_left.west);
-      \path [font=\tiny] (offspring_1_right.east) edge[bend right=90] node [left] {$\oplus M$} (mut_offspring_1_right.east);
-      \path [font=\tiny] (offspring_2_right.east) edge[bend left=90] node [left] {$\oplus M$} (mut_offspring_2_right.east);
-    \end{scope}
-  \end{tikzpicture}
+    \end{tikzpicture}
+  }
+  \caption{
+    Diagrama ilustrando\trav em um caso com $m = 1$ e $l = 8$\trav a recombinação entre os indivíduos $S_k$ e $S_{k + 1}$
+    e mutação nos filhos gerados segundo as respectivas máscaras de recombinação e mutação $R$ e $M$.
+  }
+  \label{fig:recomb_diagram}
 \end{figure}

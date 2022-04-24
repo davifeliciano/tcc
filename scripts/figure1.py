@@ -49,7 +49,7 @@ ax = fig.add_subplot(projection="3d")
 
 # Setting up labels
 ax.set(xlabel=r"$x$", ylabel=r"$y$", zlabel=r"$f(x, y)$")
-x = y = np.linspace(-1, 1, 250)
+x = y = np.linspace(-1, 1, 500)
 x, y = np.meshgrid(x, y)
 
 # Ploting the fig

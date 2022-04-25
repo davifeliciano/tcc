@@ -63,6 +63,6 @@ ax.plot_trisurf(
 # Saving the fig
 script_dir = os.path.dirname(__file__)
 workspace_dir = os.path.split(script_dir)[0]
-out_file = os.path.join(workspace_dir, "imagens/figura1.png")
+out_file = os.path.join(workspace_dir, "imagens/damped_cossine.png")
 fig.savefig(out_file, dpi=300)
 plt.show()

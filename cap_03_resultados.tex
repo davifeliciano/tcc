@@ -2,8 +2,8 @@
 
 Nesse capítulo são exibidos os resultados de alguns testes em funções reais em $\R^2$. Em cada teste, 
 8 populações com 1000 indivíduos com cromossomos de 32 bits são evoluídas por 100 gerações. O espaço de busca
-considerado foi $ [-1,1] \times [-1, 1] $, as configurações para a elite foram
-$e_1 = 4$, $e_2 = 6$ e $e_3 = 10$ e as probabilidades de mutação $p_2$ e $p_3$ escolhidas
+considerado foi $ [-1,1] \times [-1, 1] $, o valor usado para o parâmetro da função desempenho foi $h = 2$,
+as configurações para a elite foram $e_1 = 4$, $e_2 = 6$ e $e_3 = 10$ e as probabilidades de mutação $p_2$ e $p_3$ escolhidas
 foram $p_2 = 5\%$ e $p_3 = 5\%$.
 
 Ao final do processo,
@@ -14,7 +14,7 @@ afim de atestar se o algoritmo foi capaz ou não de encontrar a solução real d
 Um segundo gráfico com os valores das funções dos 200 melhores indivíduos de cada população
 no decorrer das gerações foi gerado, a fim de mostrar, em caso de convergência, sua rapidez.
 
-Ambos os gráficos foram feitos novamente com probabilidades de mutação $p_2 = 20\%$ e $p_3 = 20\%$
+Ambos os gráficos foram feitos novamente com probabilidades de mutação $p_2 = p_3 = 20\%$
 para demonstrar o papel da mutação no decorrer do algoritmo, e averiguar seu impacto na diversidade genética
 dos indivíduos.
 
@@ -152,9 +152,7 @@ com os resultados obtidos estão dispostos nas figuras (\ref{fig:position_near_g
 
 \section{Testes de Performance}
 
-Em todos os testes com funções a implementação do algoritmo se mostrou eficiente, bastando a escolha 
-correta dos parâmetros para que a solução desejada fosse encontrada com precisão. Além disso, em testes
-de tempo de execução o programa escalou bem, sendo sua complexidade temporal $\mathcal{O}(n)$ para o
+Em testes de tempo de execução o programa escalou bem, sendo sua complexidade temporal $\mathcal{O}(n)$ para o
 tamanho de população, e $\mathcal{O}(g)$ para número de gerações decorridas. 
 
 Nas figuras exibidas nesse capítulo, o tempo médio decorrido na evolução das populações de 1000 indivíduos

@@ -50,9 +50,9 @@ vetor gradiente seja próximo de zero, respeitando uma tolerância previamente d
 O problema com esse tipo de algoritmo é que, quando aplicado em funções como a definida anteriormente, a tendência é
 de que a solução encontrada seja um máximo local na grande maioria das vezes. No caso da função definida
 pela equação (\ref{eq:damped_cos}), o máximo local só seria encontrado pelo algoritmo se o ponto inicial
-fosse tal que $ r < \nicefrac{1}{2n} $. Se os pontos iniciais do algoritmo forem gerados aleatoriamente,
-para a domínio definido, a probabilidade de um ponto pertencer a esta região é $ P(n) = \nicefrac{\pi}{16n^2} $.
-Para $ n = 9 $, como na figura (\ref{fig:damped_cos}), $ P \approx 0,2\% $. 
+fosse tal que $ r < \nicefrac{1}{n} $. Se os pontos iniciais do algoritmo forem gerados aleatoriamente,
+para a domínio definido, a probabilidade de um ponto pertencer a esta região é $ P(n) = \nicefrac{\pi}{4n^2} $.
+Para $ n = 9 $, como na figura (\ref{fig:damped_cos}), $ P \approx 1\% $. 
 
 Ademais, é possível que esse tipo
 de algoritmo indique erroneamente como solução pontos de sela e planícies em determinados casos, o que o
@@ -105,7 +105,9 @@ presente na figura (\ref{fig:ga_flow}).
 
 \section{A Implementação}
 
-A linguagem de programação escolhida para a implementação do algoritmo foi Python. Amplamente utilizada no meio 
+A linguagem de programação escolhida para a implementação do algoritmo foi Python\footnote{
+  Versão 3.10.4, com NumPy na versão 1.22.3, e Matplotlib na versão 3.5.1.
+}. Amplamente utilizada no meio 
 acadêmico, trata-se de uma linguagem de fácil compreensão e aprendizado, além de contar com diversas bibliotecas
 já implementadas com o objetivo de resolver problemas recorrentes.
 

@@ -39,6 +39,13 @@
 \usepackage{subcaption}
 \captionsetup{subrefformat=parens}
 
+% Fixing up footnotes
+\usepackage[symbol]{footmisc}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+% Fixing up hyperrefs
+\newcommand{\paref}[1]{(\ref{#1})}
+
 \newtheorem{teo}{Teorema}[chapter]
 \newtheorem{exer}{Exercício}
 \newtheorem{cor}{Corolário}

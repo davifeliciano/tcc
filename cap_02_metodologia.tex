@@ -70,8 +70,8 @@ função seja sempre positiva. A ideia é que se escolha uma função desempenho
 selecione os melhores indivíduos, mas ainda mantenha uma boa variedade genética na
 próxima geração. Assim, em toda geração, em média, haverá indivíduos em todo o espaço
 de busca, evitando que a solução convirja de forma muito rápida\footnote{
-  Retomando a função usada como exemplo no capítulo anterior, definida na equação
-  (\ref{eq:damped_cos}), se escolhermos uma função de desempenho que privilegie
+  Retomando a função usada como exemplo no capítulo anterior, definida na Equação
+  \paref{eq:damped_cos}, se escolhermos uma função de desempenho que privilegie
   de forma desproporcional pontos onde o valor da função é maior. Dependendo da
   distribuição inicial dos indivíduos, é possível que após algumas gerações,
   toda a população se concentre em $ r = \nicefrac{1}{2n} $, que é um
@@ -99,7 +99,7 @@ de busca, evitando que a solução convirja de forma muito rápida\footnote{
 \end{equation}
 
 Nesse trabalho a função desempenho usada foi uma função linear $ g(x) = ax + b $
-sendo $a$ e $b$ definidos pelas equações (\ref{eq:linear_fit_a} e \ref{eq:linear_fit_b}),
+sendo $a$ e $b$ definidos pelas Equações \paref{eq:linear_fit_a} e \paref{eq:linear_fit_b},
 onde
 \begin{equation}
   \fmin = \min_{X_k \in X} f(X_k) \mathcomma
@@ -165,7 +165,7 @@ bem como uma máscara de mutação $M$, tal que
 \end{equation}
 
 Finalmente, o conjunto dos indivíduos resultantes da recombinação da seleção no conjunto definido
-pela equação (\ref{eq:selection}) será
+pela Equação \paref{eq:selection} será
 \begin{equation}
   S' = \left\{ S'_1\;, \mathdots,  \;S'_k\;, \mathdots, \;S'_{\nicefrac{n}{2}} \right\}
 \end{equation}
@@ -179,7 +179,7 @@ tal que
 onde $\lnot$, $\land$, $\lor$ e $\oplus$ são os operadores lógicos de negação, conjunção, disjunção e disjunção exclusiva,
 respectivamente.
 
-Ao final desse processo\trav resumido no diagrama presente na figura (\ref{fig:recomb_diagram})\trav
+Ao final desse processo\trav resumido no diagrama presente na Figura \paref{fig:recomb_diagram}\trav
 teremos uma nova população, sobre a qual poderemos ordenar os indivíduos segundo a função desempenho, verificar
 as características dos primeiros, e, caso necessário, repetir o algoritmo desde a etapa de seleção.
 
@@ -189,7 +189,7 @@ Afim de garantir a reprodução das características dos melhores indivíduos na
 estratégia elitista pode ser tomada. Seja $\epsilon$ o melhor indivíduo\footnote{
   Aquele cuja solução correspondente $X_{\epsilon}$ satisfaz $ g(f(X_{\epsilon})) = \max_{X_k \in X} g(f(X_k)) $.
 }
-do conjunto $S$ definido na equação (\ref{eq:selection}). A ideia dessa abordagem é introduzir\trav
+do conjunto $S$ definido na Equação \paref{eq:selection}. A ideia dessa abordagem é introduzir\trav
 antes do processo se recombinação\trav cópias de $S_{\epsilon}$ na população\footnote{
   O conjunto dessas cópias é chamado de elite da população.
 }

@@ -24,7 +24,7 @@ $ f : \R^n \rightarrow \R $. Tomemos como exemplo simples a função
   f(x, y) = \cos(n\pi r)\exp\left(-\frac{r^2}{\sigma^2}\right) \mathcomma
   \label{eq:damped_cos}
 \end{equation}
-definida no domínio $ [-1, 1] \times [-1, 1] $, cujo gráfico se encontra na figura (\ref{fig:damped_cos}). 
+definida no domínio $ [-1, 1] \times [-1, 1] $, cujo gráfico se encontra na Figura \paref{fig:damped_cos}. 
 Analiticamente é fácil determinar o ponto de máximo global em $ r = 0 $ usando métodos de cálculo
 para funções de múltiplas variáveis. 
 
@@ -37,7 +37,7 @@ Isto posto, como desenvolver um algoritmo para encontrar a solução?
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{imagens/damped_cossine.png}
-  \caption{Gráfico da função definida na equação (\ref{eq:damped_cos}), com $ n = 9 $ e $ \sigma = 0,4 $.}
+  \caption{Gráfico da função definida na Equação \paref{eq:damped_cos}, com $ n = 9 $ e $ \sigma = 0,4 $.}
   \label{fig:damped_cos}
 \end{figure}
 
@@ -49,10 +49,10 @@ vetor gradiente seja próximo de zero, respeitando uma tolerância previamente d
 
 O problema com esse tipo de algoritmo é que, quando aplicado em funções como a definida anteriormente, a tendência é
 de que a solução encontrada seja um máximo local na grande maioria das vezes. No caso da função definida
-pela equação (\ref{eq:damped_cos}), o máximo local só seria encontrado pelo algoritmo se o ponto inicial
+pela Equação \paref{eq:damped_cos}, o máximo local só seria encontrado pelo algoritmo se o ponto inicial
 fosse tal que $ r < \nicefrac{1}{n} $. Se os pontos iniciais do algoritmo forem gerados aleatoriamente,
 para a domínio definido, a probabilidade de um ponto pertencer a esta região é $ P(n) = \nicefrac{\pi}{4n^2} $.
-Para $ n = 9 $, como na figura (\ref{fig:damped_cos}), $ P \approx 1\% $. 
+Para $ n = 9 $, como na Figura \paref{fig:damped_cos}, $ P \approx 1\% $. 
 
 Ademais, é possível que esse tipo
 de algoritmo indique erroneamente como solução pontos de sela e planícies em determinados casos, o que o
@@ -99,7 +99,7 @@ por exemplo.
 
 Respeitando as diferenças de implementação em cada passo, devido as peculiaridades de cada tipo de problema
 de otimização proposto, essas etapas são presentes em todo algoritmo genético, e são bem resumidas no fluxograma
-presente na figura (\ref{fig:ga_flow}).
+presente na Figura \paref{fig:ga_flow}.
 
 \input{cap_01_diagrama_ag.tex}
 

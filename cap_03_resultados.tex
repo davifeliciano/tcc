@@ -25,6 +25,25 @@ complexidade de tempo de execução.
 
 \subsection{Cosseno Amortecido}
 
+\begin{figure}
+  \begin{subfigure}{\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{imagens/graph_damped_cossine.png}
+    \caption{}
+    \label{fig:graph_damped_cossine}
+  \end{subfigure}
+  \begin{subfigure}{\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{imagens/graph_near_gaussians.png}
+    \caption{}
+    \label{fig:graph_near_gaussians}
+  \end{subfigure}
+  \caption{
+    \subref{fig:graph_damped_cossine} Gráfico da função $f_1(x,y)$.
+    \subref{fig:graph_near_gaussians} Gráfico da função $f_2(x,y)$.
+  }
+\end{figure}
+
 A primeira função testada foi
 \begin{align}
   \begin{split}    
@@ -36,53 +55,9 @@ A primeira função testada foi
   \end{split}
   \label{eq:func_damped_cossine}
 \end{align}
-e os resultados obtidos estão dispostos nas figuras (\ref{fig:position_damped_cossine}),
-(\ref{fig:evolution_damped_cossine}), (\ref{fig:position_damped_cossine_mut_20}) e 
+e os resultados obtidos estão dispostos nas figuras (\ref{fig:contour_damped_cossine}),
+(\ref{fig:evolution_damped_cossine}), (\ref{fig:contour_damped_cossine_mut_20}) e 
 (\ref{fig:evolution_damped_cossine_mut_20}).
-
-\begin{figure}[p]
-  \centering
-  \includegraphics[width=\textwidth]{imagens/low_prob/position_damped_cossine.png}
-  \caption{
-    Em preto, posições dos indivíduos de 8 populações em sua 100ª geração na otimização da função
-    $ f_1(x,y) $, com $ p_2 = p_3 = 5\% $. Marcado com um $\times$ vermelho estão os 
-    melhores indivíduos de cada população.
-  }
-  \label{fig:position_damped_cossine}
-\end{figure}
-
-\begin{figure}[p]
-  \centering
-  \includegraphics[width=0.6\textwidth]{imagens/low_prob/evolution_damped_cossine.png}
-  \caption{
-    Evolução dos valores da função $ f_1(x,y) $ para os
-    melhores 200 indivíduos de cada população, diferenciadas por cor, em termos da geração $g$,
-    com $ p_2 = p_3 = 5\% $.
-  }
-  \label{fig:evolution_damped_cossine}
-\end{figure}
-
-\begin{figure}[p]
-  \centering
-  \includegraphics[width=\textwidth]{imagens/high_prob/position_damped_cossine.png}
-  \caption{
-    Em preto, posições dos indivíduos de 8 populações em sua 100ª geração na otimização da função
-    $ f_1(x,y) $, com $ p_2 = p_3 = 20\% $. Marcado com um $\times$ vermelho estão os 
-    melhores indivíduos de cada população.
-  }
-  \label{fig:position_damped_cossine_mut_20}
-\end{figure}
-
-\begin{figure}[p]
-  \centering
-  \includegraphics[width=0.6\textwidth]{imagens/high_prob/evolution_damped_cossine.png}
-  \caption{
-    Evolução dos valores da função $ f_1(x,y) $ para os
-    melhores 200 indivíduos de cada população, diferenciadas por cor, em termos da geração $g$,
-    com $ p_2 = p_3 = 20\% $.
-  }
-  \label{fig:evolution_damped_cossine_mut_20}
-\end{figure}
 
 \subsection{Gaussianas Próximas}
 
@@ -102,24 +77,68 @@ A segunda função testada foi
   \end{split}
   \label{eq:func_near_gaussians}
 \end{align}
-com os resultados obtidos estão dispostos nas figuras (\ref{fig:position_near_gaussians}),
-(\ref{fig:evolution_near_gaussians}), (\ref{fig:position_near_gaussians_mut_20}) e 
+com os resultados obtidos ilustrados nas figuras (\ref{fig:contour_near_gaussians}),
+(\ref{fig:evolution_near_gaussians}), (\ref{fig:contour_near_gaussians_mut_20}) e 
 (\ref{fig:evolution_near_gaussians_mut_20}).
 
 \begin{figure}[p]
   \centering
-  \includegraphics[width=\textwidth]{imagens/low_prob/position_near_gaussians.png}
+  \includegraphics[width=\textwidth]{imagens/low_prob/contour_damped_cossine.png}
   \caption{
-    Em preto, posições dos indivíduos de 8 populações em sua 100ª geração na otimização da função
-    $ f_2(x,y) $, com $ p_2 = p_3 = 5\% $. Marcado com um $\times$ vermelho estão os 
-    melhores indivíduos de cada população.
+    Curvas de nível da função $f_1(x,y)$. Os pontos em preto indicam as posições dos indivíduos
+    de 8 populações em sua 100ª geração na otimização da função, com $ p_2 = p_3 = 5\% $. 
+    Marcado com um $\times$ vermelho estão os melhores indivíduos de cada população.
   }
-  \label{fig:position_near_gaussians}
+  \label{fig:contour_damped_cossine}
 \end{figure}
 
 \begin{figure}[p]
   \centering
-  \includegraphics[width=0.6\textwidth]{imagens/low_prob/evolution_near_gaussians.png}
+  \includegraphics[width=\textwidth]{imagens/low_prob/evolution_damped_cossine.png}
+  \caption{
+    Evolução dos valores da função $ f_1(x,y) $ para os
+    melhores 200 indivíduos de cada população, diferenciadas por cor, em termos da geração $g$,
+    com $ p_2 = p_3 = 5\% $.
+  }
+  \label{fig:evolution_damped_cossine}
+\end{figure}
+
+\begin{figure}[p]
+  \centering
+  \includegraphics[width=\textwidth]{imagens/high_prob/contour_damped_cossine.png}
+  \caption{
+    Curvas de nível da função $f_1(x,y)$. Os pontos em preto indicam as posições dos indivíduos
+    de 8 populações em sua 100ª geração na otimização da função, com $ p_2 = p_3 = 20\% $. 
+    Marcado com um $\times$ vermelho estão os melhores indivíduos de cada população.
+  }
+  \label{fig:contour_damped_cossine_mut_20}
+\end{figure}
+
+\begin{figure}[p]
+  \centering
+  \includegraphics[width=\textwidth]{imagens/high_prob/evolution_damped_cossine.png}
+  \caption{
+    Evolução dos valores da função $ f_1(x,y) $ para os
+    melhores 200 indivíduos de cada população, diferenciadas por cor, em termos da geração $g$,
+    com $ p_2 = p_3 = 20\% $.
+  }
+  \label{fig:evolution_damped_cossine_mut_20}
+\end{figure}
+
+\begin{figure}[p]
+  \centering
+  \includegraphics[width=\textwidth]{imagens/low_prob/contour_near_gaussians.png}
+  \caption{
+    Curvas de nível da função $f_2(x,y)$. Os pontos em preto indicam as posições dos indivíduos
+    de 8 populações em sua 100ª geração na otimização da função, com $ p_2 = p_3 = 5\% $. 
+    Marcado com um $\times$ vermelho estão os melhores indivíduos de cada população.
+  }
+  \label{fig:contour_near_gaussians}
+\end{figure}
+
+\begin{figure}[p]
+  \centering
+  \includegraphics[width=\textwidth]{imagens/low_prob/evolution_near_gaussians.png}
   \caption{
     Evolução dos valores da função $ f_2(x,y) $ para os
     melhores 200 indivíduos de cada população, diferenciadas por cor, em termos da geração $g$,
@@ -130,18 +149,18 @@ com os resultados obtidos estão dispostos nas figuras (\ref{fig:position_near_g
 
 \begin{figure}[p]
   \centering
-  \includegraphics[width=\textwidth]{imagens/high_prob/position_near_gaussians.png}
+  \includegraphics[width=\textwidth]{imagens/high_prob/contour_near_gaussians.png}
   \caption{
-    Em preto, posições dos indivíduos de 8 populações em sua 100ª geração na otimização da função
-    $ f_2(x,y) $, com $ p_2 = p_3 = 20\% $. Marcado com um $\times$ vermelho estão os 
-    melhores indivíduos de cada população.
+    Curvas de nível da função $f_2(x,y)$. Os pontos em preto indicam as posições dos indivíduos
+    de 8 populações em sua 100ª geração na otimização da função, com $ p_2 = p_3 = 20\% $. 
+    Marcado com um $\times$ vermelho estão os melhores indivíduos de cada população.
   }
-  \label{fig:position_near_gaussians_mut_20}
+  \label{fig:contour_near_gaussians_mut_20}
 \end{figure}
 
 \begin{figure}[p]
   \centering
-  \includegraphics[width=0.6\textwidth]{imagens/high_prob/evolution_near_gaussians.png}
+  \includegraphics[width=\textwidth]{imagens/high_prob/evolution_near_gaussians.png}
   \caption{
     Evolução dos valores da função $ f_2(x,y) $ para os
     melhores 200 indivíduos de cada população, diferenciadas por cor, em termos da geração $g$,

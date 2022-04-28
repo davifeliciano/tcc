@@ -81,6 +81,8 @@ de busca, evitando que a solução convirja de forma muito rápida\footnote{
 \newcommand{\fmin}{f_{min}}
 \newcommand{\fmax}{f_{max}}
 
+Nesse trabalho a função desempenho usada foi uma função linear $ g(x) = ax + b $
+sendo $a$ e $b$ definidos por
 \begin{equation}
   a =
   \begin{cases}
@@ -89,17 +91,16 @@ de busca, evitando que a solução convirja de forma muito rápida\footnote{
   \end{cases}
   \label{eq:linear_fit_a}
 \end{equation}
+e
 \begin{equation}
   b =
   \begin{cases}
     \frac{\mu (\fmax - h\mu)}{\fmax - \mu} \;, & \text{se } \fmin > \frac{h\mu - \fmax}{h - 1} \\
     - \frac{\mu\fmin}{\mu - \fmin}         \;, & \text{caso contrário}
   \end{cases}
+  \mathcomma
   \label{eq:linear_fit_b}
 \end{equation}
-
-Nesse trabalho a função desempenho usada foi uma função linear $ g(x) = ax + b $
-sendo $a$ e $b$ definidos pelas Equações \paref{eq:linear_fit_a} e \paref{eq:linear_fit_b},
 onde
 \begin{equation}
   \fmin = \min_{X_k \in X} f(X_k) \mathcomma
@@ -139,13 +140,12 @@ de cada par de cromossomos dos pais e, por fim, são introduzidas mutações nos
 
 \input{cap_02_diagrama_recomb.tex}
 
-Matematicamente, podemos realizar esse processo para cada par da seguinte forma. Primeiramente, devemos
+Matematicamente, podemos realizar esse processo para cada par da seguinte forma. Primeiro, devemos
 sortear os pontos de recombinação. Esse processo é feito por meio da geração de $m$ pares
 de números naturais aleatórios distintos $ (\kth{\alpha}{j}, \kth{\beta}{j}) $ tais que
 $ 0 \leq \kth{\alpha}{j} < \kth{\beta}{j} $ e $ \kth{\alpha}{j} \leq \kth{\beta}{j} < l $ onde
 $ j = 0, 1, \dots, m $ e $ k = 0, 2, 4, \dots, \nicefrac{n}{2} - 2 $.
-
-Posteriormente, é montada uma matriz $R$ denominada máscara de recombinação, definida por
+Depois, é montada uma matriz $R$ denominada máscara de recombinação, definida por
 \begin{equation}
   \kth{r}{ij} =
   \begin{cases}
@@ -170,12 +170,13 @@ pela Equação \paref{eq:selection} será
   S' = \left\{ S'_1\;, \mathdots,  \;S'_k\;, \mathdots, \;S'_{\nicefrac{n}{2}} \right\}
 \end{equation}
 tal que
-\begin{subequations}
-  \begin{align}
-    \kth{s'}{ij}  & = (\kth{s}{ij} \land \kth{r}{ij}) \lor (\kpth{s}{ij} \land \lnot \kth{r}{ij}) \oplus \kth{m}{ij} \mathcomma \\
-    \kpth{s'}{ij} & = (\kth{s}{ij} \land \lnot \kth{r}{ij}) \lor (\kpth{s}{ij} \land \kth{r}{ij}) \oplus \kth{m}{ij} \mathcomma
-  \end{align}
-\end{subequations}
+\begin{equation}
+  \kth{s'}{ij} = (\kth{s}{ij} \land \kth{r}{ij}) \lor (\kpth{s}{ij} \land \lnot \kth{r}{ij}) \oplus \kth{m}{ij}
+\end{equation}
+e
+\begin{equation}
+  \kpth{s'}{ij} = (\kth{s}{ij} \land \lnot \kth{r}{ij}) \lor (\kpth{s}{ij} \land \kth{r}{ij}) \oplus \kth{m}{ij} \mathcomma
+\end{equation}
 onde $\lnot$, $\land$, $\lor$ e $\oplus$ são os operadores lógicos de negação, conjunção, disjunção e disjunção exclusiva,
 respectivamente.
 
@@ -214,7 +215,6 @@ são feitas $e_3$ substituições similares em posições aleatórias.
 Ao final desse processo, prossegue-se para a etapa de recombinação, com o detalhe de que os primeiros $e_1$
 indivíduos terão probabilidade de mutação $p_1 = 0$, os $e_2$ indivíduos seguintes e o restante da população
 terão probabilidades de mutação não nulas $p_2$ e $p_3$.
-
 Como consequência, $S_{\epsilon}$ será parte da população seguinte, uma vez que a recombinação entre um
 indivíduo e seu clone dá origem a dois outros clones, na ausência de mutações. Ademais, cópias mutadas
 também estarão presentes, bem como cruzamentos de $S_{\epsilon}$ com $e_3$ indivíduos distintos.

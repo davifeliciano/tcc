@@ -10,14 +10,12 @@ Ao final do processo,
 foram gerados gráficos com as curvas de nível de cada função e com as posições de todos os
 integrantes de todas as populações. Os 8 melhores indivíduos são marcados de forma distinta,
 afim de atestar se o algoritmo foi capaz ou não de encontrar a solução real do problema.
-
 Um segundo gráfico com os valores das funções dos 200 melhores indivíduos de cada população
 no decorrer das gerações foi gerado, a fim de mostrar, em caso de convergência, sua rapidez.
 
 Ambos os gráficos foram feitos novamente com probabilidades de mutação $p_2 = p_3 = 20\%$
 para demonstrar o papel da mutação no decorrer do algoritmo, e averiguar seu impacto na diversidade genética
 dos indivíduos.
-
 Por fim, é feita uma breve discussão sobre a performance da implementação do algoritmo e sua
 complexidade de tempo de execução.
 
@@ -51,7 +49,7 @@ A primeira função testada foi
     r      & = \sqrt{
       \left(x - 0,5\right)^2 +
       \left(y - 0,5\right)^2
-    } \mathcomma
+    }
   \end{split}
   \label{eq:func_damped_cossine}
 \end{align}
@@ -173,7 +171,6 @@ com os resultados obtidos ilustrados nas Figuras \paref{fig:contour_near_gaussia
 
 Em testes de tempo de execução o programa escalou bem, sendo sua complexidade temporal $\mathcal{O}(n)$ para o
 tamanho de população, e $\mathcal{O}(g)$ para número de gerações decorridas. 
-
 Nas figuras exibidas nesse capítulo, o tempo médio decorrido na evolução das populações de 1000 indivíduos
 foi de 15 segundos\footnote{
   Tempo obtido usando uma máquina com processador Intel i7-8550U com frequência máxima de 4GHz.

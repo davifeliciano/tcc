@@ -11,8 +11,8 @@ maximiza o valor total. Esse valor é calculado somando-se os preços dos itens 
 mochila. 
 
 Entretanto a solução deve respeitar um vínculo: o peso total dos objetos escolhidos
-não deve exceder o peso máximo suportado pela mochila. Tal problema não é NP-completo, e,
-ainda que seja possível encontrar a solução exata usando algoritmos de programação dinâmica,
+não deve exceder o peso máximo suportado pela mochila. Ainda que seja possível encontrar a solução exata
+desse problema usando algoritmos de programação dinâmica,
 a complexidade de tais algoritmos é $ \mathcal{O} (n w) $, onde $n$ é o número de itens e $w$ é a
 capacidade da bolsa. Assim, o tempo de execução para muitos itens\trav que é o caso de interesse,
 usualmente\trav pode ser mais longo do que o desejado.
@@ -27,7 +27,6 @@ $ f : \R^n \rightarrow \R $. Tomemos como exemplo simples a função
 definida no domínio $ [-1, 1] \times [-1, 1] $, cujo gráfico se encontra na Figura \paref{fig:damped_cos}. 
 Analiticamente é fácil determinar o ponto de máximo global em $ r = 0 $ usando métodos de cálculo
 para funções de múltiplas variáveis. 
-
 Contudo, não é sempre que pode-se dispor de tal facilidade. 
 Nos casos em que a função objetivo é de maior complexidade, com domínio contido espaços de maior dimensão; 
 em que a função tem evolução temporal; em que a função possui diversas descontinuidades; ou em que a função
@@ -41,8 +40,9 @@ Isto posto, como desenvolver um algoritmo para encontrar a solução?
   \label{fig:damped_cos}
 \end{figure}
 
-Uma classe de algoritmos mais simples que se propõem a resolver esse problema é são os algoritmos do
-tipo \textit{hill climbing}. Sugerido pelo nome, o funcionamento desses algoritmos consiste, resumidamente,
+Uma classe de algoritmos mais simples que se propõem a resolver esse problema são os algoritmos do
+tipo escalada de morro (\textit{hill climbing}, em inglês). 
+Sugerido pelo nome, o funcionamento desses algoritmos consiste, resumidamente,
 em sortear um ponto inicial no domínio da função, calcular o gradiente da função no ponto, e seguir
 na direção resultante por uma distância pré-definida, e repetir esses passos até que o módulo do
 vetor gradiente seja próximo de zero, respeitando uma tolerância previamente determinada. 
@@ -51,16 +51,15 @@ O problema com esse tipo de algoritmo é que, quando aplicado em funções como 
 de que a solução encontrada seja um máximo local na grande maioria das vezes. No caso da função definida
 pela Equação \paref{eq:damped_cos}, o máximo local só seria encontrado pelo algoritmo se o ponto inicial
 fosse tal que $ r < \nicefrac{1}{n} $. Se os pontos iniciais do algoritmo forem gerados aleatoriamente,
-para a domínio definido, a probabilidade de um ponto pertencer a esta região é $ P(n) = \nicefrac{\pi}{4n^2} $.
+para o domínio definido, a probabilidade de um ponto pertencer a esta região é $ P(n) = \nicefrac{\pi}{4n^2} $.
 Para $ n = 9 $, como na Figura \paref{fig:damped_cos}, $ P \approx 1\% $. 
-
 Ademais, é possível que esse tipo
 de algoritmo indique erroneamente como solução pontos de sela e planícies em determinados casos, o que o
 torna ainda menos eficaz para o propósito.
 
 Uma outra categoria de algoritmos que podem resolver ambos os problemas de forma rápida e chegar a uma
 solução que se aproxima o suficiente da solução exata são os algoritmos genéticos. Tais algoritmos,
-quando bem implementados podem chegar a uma solução aproximada para o problema da mochila de forma
+quando bem implementados, podem chegar a uma solução aproximada para o problema da mochila de forma
 rápida para valores de $n$ e $w$ ordens de grandeza superiores aos que tornariam praticável o uso da
 estratégia proposta anteriormente. 
 
@@ -87,7 +86,6 @@ identidade codificada pelo seu material genético\footnote{
   a um objeto do problema. Por outro lado, no problema de otimização numérica, dois cromossomos seriam
   necessários, um para codificar cada coordenada em cada dimensão do espaço de busca.
 }.
-
 Então, sob algum critério, é selecionada uma parcela desses indivíduos, a qual dará origem a novos
 descendentes, cujos cromossomos serão gerados pela recombinação dos cromossomos correspondentes nos
 pais. Nesse passo é introduzida uma probabilidade de mutação nos genes dos filhos. 
@@ -96,17 +94,17 @@ Ao final desse processo, descarta-se a parcela não selecionada da população, 
 pelos pais seus filhos. Esse processo é repetido iterativamente até que uma condição de parada seja
 atingida. Essa condição pode ser imposta sobre o número de gerações ou sobre o tempo de execução do programa,
 por exemplo.
-
 Respeitando as diferenças de implementação em cada passo, devido as peculiaridades de cada tipo de problema
 de otimização proposto, essas etapas são presentes em todo algoritmo genético, e são bem resumidas no fluxograma
 presente na Figura \paref{fig:ga_flow}.
 
 \input{cap_01_diagrama_ag.tex}
 
-\section{A Implementação}
+\section{A Implementação do Algoritmo Genético}
 
 A linguagem de programação escolhida para a implementação do algoritmo foi Python\footnote{
   Versão 3.10.4, com NumPy na versão 1.22.3, e Matplotlib na versão 3.5.1.
+  Código disponível em \url{https://github.com/davifeliciano/num_opt_ga}.
 }. Amplamente utilizada no meio 
 acadêmico, trata-se de uma linguagem de fácil compreensão e aprendizado, além de contar com diversas bibliotecas
 já implementadas com o objetivo de resolver problemas recorrentes.

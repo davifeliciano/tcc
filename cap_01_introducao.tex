@@ -5,7 +5,7 @@
 Em matemática e ciência da computação, problemas de otimização consistem naqueles em que
 a solução é um elemento de um conjunto de candidatos que melhor satisfaz uma determinada
 série de condições. Um exemplo clássico dessa classe é o problema da mochila 
-(\textit{knapsack problem}, em inglês)\cite{knapsack_wiki}, no qual
+(\textit{knapsack problem}, em inglês), no qual
 procura-se, dentre um conjunto de itens com diversos preços e pesos, o subconjunto que
 maximiza o valor total. Esse valor é calculado somando-se os preços dos itens postos na
 mochila. 
@@ -45,7 +45,7 @@ tipo escalada de morro (\textit{hill climbing}, em inglês).
 Sugerido pelo nome, o funcionamento desses algoritmos consiste, resumidamente,
 em sortear um ponto inicial no domínio da função, calcular o gradiente da função no ponto, e seguir
 na direção resultante por uma distância pré-definida, e repetir esses passos até que o módulo do
-vetor gradiente seja próximo de zero, respeitando uma tolerância previamente determinada. 
+vetor gradiente seja próximo de zero, respeitando uma tolerância previamente determinada\cite{goldberg1989ga}. 
 
 O problema com esse tipo de algoritmo é que, quando aplicado em funções como a definida anteriormente, a tendência é
 de que a solução encontrada seja um máximo local na grande maioria das vezes. No caso da função definida
@@ -73,7 +73,7 @@ acelerar a obtenção de uma solução.
 \section{O Algoritmo Genético}
 
 Os algoritmos genéticos foram primeiramente desenvolvidos por John H. 
-Holland\cite{holland1992ga}\cite{holland_wiki} na década de 60. Levam esse nome pois sua formulação teve como 
+Holland\cite{holland1992ga} na década de 60. Levam esse nome pois sua formulação teve como 
 forte influência o processo de evolução natural que fomenta a origem das espécies desde o surgimento da vida
 em nosso planeta. Em sua execução, é inicializada uma população de indivíduos da mesma espécie\footnote{
   Isso significa que seus respectivos códigos genéticos possuem a mesma estrutura: mesma número de
@@ -109,7 +109,7 @@ A linguagem de programação escolhida para a implementação do algoritmo foi P
 acadêmico, trata-se de uma linguagem de fácil compreensão e aprendizado, além de contar com diversas bibliotecas
 já implementadas com o objetivo de resolver problemas recorrentes.
 
-As duas principais bibliotecas utilizadas neste projeto foram NumPy\cite{harris2020array} e Matplotlib\cite{hunter2007}. 
+As duas principais bibliotecas utilizadas neste projeto foram NumPy e Matplotlib. 
 A primeira se trata de uma biblioteca para manipulação numérica e vetorizada de matrizes. É implementada na linguagem C, 
 o que confere performance às operações numéricas, mantendo a facilidade de uso e versatilidade características da linguagem
 Python. Já a segunda, se trata de uma biblioteca para a criação de gráficos matemáticos, que será de suma importância

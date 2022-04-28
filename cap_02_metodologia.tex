@@ -69,7 +69,7 @@ Existe uma liberdade para a escolha da função desempenho, desde que se respeit
 função seja sempre positiva. A ideia é que se escolha uma função desempenho que
 selecione os melhores indivíduos, mas ainda mantenha uma boa variedade genética na
 próxima geração. Assim, em toda geração, em média, haverá indivíduos em todo o espaço
-de busca, evitando que a solução convirja de forma muito rápida\footnote{
+de busca, evitando que a solução convirja de forma prematura\footnote{
   Retomando a função usada como exemplo no capítulo anterior, definida na Equação
   \paref{eq:damped_cos}, se escolhermos uma função de desempenho que privilegie
   de forma desproporcional pontos onde o valor da função é maior. Dependendo da
@@ -81,7 +81,7 @@ de busca, evitando que a solução convirja de forma muito rápida\footnote{
 \newcommand{\fmin}{f_{min}}
 \newcommand{\fmax}{f_{max}}
 
-Nesse trabalho a função desempenho usada foi uma função linear $ g(x) = ax + b $
+Nesse trabalho a função desempenho usada foi um escalamento linear\cite{goldberg1989ga} $ g(x) = ax + b $
 sendo $a$ e $b$ definidos por
 \begin{equation}
   a =
@@ -187,7 +187,8 @@ as características dos primeiros, e, caso necessário, repetir o algoritmo desd
 \section{Estratégia Elitista}
 
 Afim de garantir a reprodução das características dos melhores indivíduos na geração seguinte, uma
-estratégia elitista pode ser tomada. Seja $\epsilon$ o melhor indivíduo\footnote{
+estratégia elitista pode ser tomada\cite{goldberg1989ga}\cite{roncaratti2006ga}.
+Seja $\epsilon$ o melhor indivíduo\footnote{
   Aquele cuja solução correspondente $X_{\epsilon}$ satisfaz $ g(f(X_{\epsilon})) = \max_{X_k \in X} g(f(X_k)) $.
 }
 do conjunto $S$ definido na Equação \paref{eq:selection}. A ideia dessa abordagem é introduzir\trav

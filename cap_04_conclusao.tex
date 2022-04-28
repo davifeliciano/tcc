@@ -1,7 +1,7 @@
 \chapter{Conclusão e Perspectivas}\label{cap_conclusao}
 
 Um algoritmo do tipo genético se mostrou eficaz na solução de problemas de otimização
-numérica, encontrando o máximo global com poucas iterações e mantendo uma varia, sendo uma
+numérica, encontrando o máximo global com poucas iterações, sendo uma
 estratégia muito superior a qualquer método do tipo escalada de morro. 
 
 Como pode ser observado, em todos os casos, os melhores indivíduos foram localizados no máximo global
@@ -24,15 +24,32 @@ onde visivelmente há uma concentração de indivíduos em $ f_1(x,y) \approx 0,
 $ f_1(x,y) \approx 0,29 $, que correspondem aos dois primeiros máximos locais.
 Algo similar pode ser observado na segunda função, nas primeiras gerações da Figura 
 \paref{fig:evolution_near_gaussians_mut_20}, com alguma concentração da população em
-vermelho e em laranja em $f_1(x,y) \approx 0,8$.
+vermelho em $f_1(x,y) \approx 0,8$.
 
 Claro que, mesmo nos casos em que não é possível inferir o máximo local da evolução
 de uma parcela da população\trav como ocorre na Figura \paref{fig:evolution_damped_cossine}\trav
 uma análise estatística feita sobre os valores das funções desempenho dos indivíduos e
 suas respectivas posições ainda seria capaz de acusá-lo.
 
-Em suma, o algoritmo desenvolvido produziu resultados favoráveis nos testes apresentados, e suas capacidades
-e limitações serão postos a prova em outros testes subsequentes e nas futuras etapas do trabalho, 
-onde será feita sua aplicação no estudo acerca de algum sistema físico.
+Em alguns casos, 100 gerações não são o suficiente para determinar a solução correta. Na população
+em vermelho na Figura \paref{fig:evolution_near_gaussians} houve uma convergência rápida para o
+máximo local, onde todos os 200 melhores indivíduos permaneceram durante toda a duração do teste.
+Algo similar ocorreu na população em verde, para a maioria dos indivíduos da elite. Entretanto, 
+o número de gerações sempre pode ser escolhido conforme a necessidade.
 
-\nocite{charbonneau2002ga}
+Em problemas mais complexos, ou que demandem maior precisão, o espaço de busca pode ser restrito
+para uma região menor, contendo os candidatos a solução obtidos anteriormente. Na falta de
+candidatos, o oposto pode ser feito, expandindo a região de busca. 
+
+Uma outra característica 
+do código implementado é a facilidade de paraleliza-lo. Em todos os resultados exibidos no capítulo
+anterior, a evolução de cada população foi computada de forma concorrente em 8 processos distintos,
+aumentando assim a amostra de indivíduos sem acréscimo significativo no tempo de execução.
+
+Em suma, o algoritmo desenvolvido se mostrou bastante versátil, e produziu resultados favoráveis nos 
+testes apresentados, sendo a maior dificuldade atrelada a solução do problema a determinação dos
+parâmetros que melhor possibilitam o sucesso na busca dos extremos. As capacidades e limitações serão postos
+a prova em outros testes subsequentes e nas futuras etapas do trabalho, onde será feita sua aplicação 
+no estudo acerca de algum sistema físico.
+
+\nocite{ribeiro2013ga}

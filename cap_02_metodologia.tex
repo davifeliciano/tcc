@@ -35,7 +35,7 @@ onde
 \begin{equation}
   X_k = \left( \kth{x}{1}, \mathdots, \; \kth{x}{j}, \mathdots, \; \kth{x}{m} \right)
 \end{equation}
-são vetores de $ \R^n $ e representam a posição do respectivo indivíduo no espaço de busca.
+são vetores de $ \R^m $ e representam a posição do respectivo indivíduo no espaço de busca.
 Tal espaço é um subconjunto de $ \mathcal{C} $ definido pelo produto cartesiano
 \begin{equation}
   \mathcal{S} = \bigtimes_{j = 1}^m \; [ \xmin{j} \; , \; \xmax{j} ] \mathcomma
@@ -43,7 +43,7 @@ Tal espaço é um subconjunto de $ \mathcal{C} $ definido pelo produto cartesian
 sendo $ \xmin{j} $ e $ \xmax{j} $, respectivamente, os valores mínimo e máximo para
 a coordenada $ \kth{x}{j} $.
 
-Como $l$ bits são capazes de representar números inteiros em $ [0, 2^l) $,
+Como $l$ bits são capazes de representar números inteiros em $ [0, 2^l - 1) $,
 uma forma natural de mapear tal intervalo
 em $ [ \xmin{j} \; , \; \xmax{j} ] $ é
 \begin{equation}
@@ -125,7 +125,7 @@ respectivos filhos, seguindo com $n$ indivíduos.
 
 Seja o conjunto de indivíduos selecionados
 \begin{equation}
-  S = \left\{ S_1\;, \mathdots,  \;S_k\;, \mathdots, \;S_n \right\} \mathperiod
+  S = \left\{ S_1\;, \mathdots,  \;S_k\;, \mathdots, \;S_{\nicefrac{n}{2}} \right\} \mathperiod
   \label{eq:selection}
 \end{equation}
 Estes indivíduos passarão, em pares adjacentes\footnote{
@@ -142,7 +142,7 @@ de cada par de cromossomos dos pais e, por fim, são introduzidas mutações nos
 
 Matematicamente, podemos realizar esse processo para cada par da seguinte forma. Primeiro, devemos
 sortear os pontos de recombinação. Esse processo é feito por meio da geração de $m$ pares
-de números naturais aleatórios distintos $ (\kth{\alpha}{j}, \kth{\beta}{j}) $ tais que
+de números naturais aleatórios distintos $ \kth{\alpha}{j} $ e $ \kth{\beta}{j} $ tais que
 $ 0 \leq \kth{\alpha}{j} < \kth{\beta}{j} $ e $ \kth{\alpha}{j} \leq \kth{\beta}{j} < l $ onde
 $ j = 0, 1, \dots, m $ e $ k = 0, 2, 4, \dots, \nicefrac{n}{2} - 2 $.
 Depois, é montada uma matriz $R$ denominada máscara de recombinação, definida por
@@ -188,7 +188,7 @@ as características dos primeiros, e, caso necessário, repetir o algoritmo desd
 
 Afim de garantir a reprodução das características dos melhores indivíduos na geração seguinte, uma
 estratégia elitista pode ser tomada\cite{goldberg1989ga}\cite{roncaratti2006ga}.
-Seja $\epsilon$ o melhor indivíduo\footnote{
+Seja $S_{\epsilon}$ o melhor indivíduo\footnote{
   Aquele cuja solução correspondente $X_{\epsilon}$ satisfaz $ g(f(X_{\epsilon})) = \max_{X_k \in X} g(f(X_k)) $.
 }
 do conjunto $S$ definido na Equação \paref{eq:selection}. A ideia dessa abordagem é introduzir\trav

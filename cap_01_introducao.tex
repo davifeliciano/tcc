@@ -19,16 +19,18 @@ usualmente\trav pode ser mais longo do que o desejado.
 
 Outro exemplo comum de problema de otimização é o de otimização numérica, do qual constituem
 solução os pontos de máximo ou mínimo global de uma função 
-$ f : \R^n \rightarrow \R $. Tomemos como exemplo simples a função
+$ f : \R^m \rightarrow \R $. Tomemos como exemplo simples a função
 \begin{equation}
   f(x, y) = \cos(n\pi r)\exp\left(-\frac{r^2}{\sigma^2}\right) \mathcomma
   \label{eq:damped_cos}
 \end{equation}
-definida no domínio $ [-1, 1] \times [-1, 1] $, cujo gráfico se encontra na Figura \paref{fig:damped_cos}. 
+definida no domínio $ [-1, 1] \times [-1, 1] $, cujo gráfico se encontra na Figura \ref{fig:damped_cos}.
+Os parâmetros $n$ e $\sigma$ são reais, e modificam a frequência de oscilação da função e a rapidez
+de decaimento da amplitude, respectivamente.
 Analiticamente é fácil determinar o ponto de máximo global em $ r = 0 $ usando métodos de cálculo
 para funções de múltiplas variáveis. 
 Contudo, não é sempre que pode-se dispor de tal facilidade. 
-Nos casos em que a função objetivo é de maior complexidade, com domínio contido espaços de maior dimensão; 
+Nos casos em que a função objetivo é de maior complexidade, com domínio contido em espaços de maior dimensão; 
 em que a função tem evolução temporal; em que a função possui diversas descontinuidades; ou em que a função
 depende de variáveis aleatórias, o problema se torna impraticável de resolver de forma analítica. 
 Isto posto, como desenvolver um algoritmo para encontrar a solução?
@@ -36,7 +38,7 @@ Isto posto, como desenvolver um algoritmo para encontrar a solução?
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{imagens/damped_cossine.png}
-  \caption{Gráfico da função definida na Equação \paref{eq:damped_cos}, com $ n = 9 $ e $ \sigma = 0,4 $.}
+  \caption{Gráfico da função definida na Equação \ref{eq:damped_cos}, com $ n = 9 $ e $ \sigma = 0,4 $.}
   \label{fig:damped_cos}
 \end{figure}
 
@@ -45,14 +47,19 @@ tipo escalada de morro (\textit{hill climbing}, em inglês).
 Sugerido pelo nome, o funcionamento desses algoritmos consiste, resumidamente,
 em sortear um ponto inicial no domínio da função, calcular o gradiente da função no ponto, e seguir
 na direção resultante por uma distância pré-definida, e repetir esses passos até que o módulo do
-vetor gradiente seja próximo de zero, respeitando uma tolerância previamente determinada\cite{goldberg1989ga}. 
+vetor gradiente seja próximo de zero, respeitando uma tolerância previamente determinada  \cite{goldberg1989ga}. 
 
 O problema com esse tipo de algoritmo é que, quando aplicado em funções como a definida anteriormente, a tendência é
 de que a solução encontrada seja um máximo local na grande maioria das vezes. No caso da função definida
-pela Equação \paref{eq:damped_cos}, o máximo local só seria encontrado pelo algoritmo se o ponto inicial
-fosse tal que $ r < \nicefrac{1}{n} $. Se os pontos iniciais do algoritmo forem gerados aleatoriamente,
+pela Equação \ref{eq:damped_cos}, o máximo global só seria encontrado pelo algoritmo se o ponto inicial
+ocorresse na região delimitada pelo primeiro mínimo local, isto é, na região\footnote{
+  Tal probabilidade é computada tomando a razão entre a área delimitada pelo primeiro mínimo local
+  e a área total do domínio em questão.
+}
+tal que $ r < \nicefrac{1}{n} $. 
+Se os pontos iniciais do algoritmo forem gerados aleatoriamente,
 para o domínio definido, a probabilidade de um ponto pertencer a esta região é $ P(n) = \nicefrac{\pi}{4n^2} $.
-Para $ n = 9 $, como na Figura \paref{fig:damped_cos}, $ P \approx 1\% $. 
+Para $ n = 9 $, como na Figura \ref{fig:damped_cos}, $ P \approx 1\% $. 
 Ademais, é possível que esse tipo
 de algoritmo indique erroneamente como solução pontos de sela e planícies em determinados casos, o que o
 torna ainda menos eficaz para o propósito.
@@ -72,8 +79,8 @@ acelerar a obtenção de uma solução.
 
 \section{O Algoritmo Genético}
 
-Os algoritmos genéticos foram primeiramente desenvolvidos por John H. 
-Holland\cite{holland1992ga} na década de 60. Levam esse nome pois sua formulação teve como 
+Os algoritmos genéticos foram primeiramente desenvolvidos por John Henry
+Holland \cite{holland1992ga} na década de 60. Levam esse nome pois sua formulação teve como 
 forte influência o processo de evolução natural que fomenta a origem das espécies desde o surgimento da vida
 em nosso planeta. Em sua execução, é inicializada uma população de indivíduos da mesma espécie\footnote{
   Isso significa que seus respectivos códigos genéticos possuem a mesma estrutura: mesma número de
@@ -91,12 +98,15 @@ descendentes, cujos cromossomos serão gerados pela recombinação dos cromossom
 pais. Nesse passo é introduzida uma probabilidade de mutação nos genes dos filhos. 
 
 Ao final desse processo, descarta-se a parcela não selecionada da população, dando origem a uma nova geração, formada
-pelos pais seus filhos. Esse processo é repetido iterativamente até que uma condição de parada seja
-atingida. Essa condição pode ser imposta sobre o número de gerações ou sobre o tempo de execução do programa,
-por exemplo.
+pelos pais e seus filhos. Esse processo é repetido iterativamente até que uma condição de parada seja
+atingida. Essa condição pode ser imposta sobre o número de gerações ou sobre o tempo de execução do programa.
+Pode ainda ocorrer quando for observado uma determinada característica na população, persistente no decorrer das gerações,
+No caso de um problema de otimização numérica, a observação de uma porção de indivíduos com seus genes
+constantes durante um número grande de gerações pode significar a convergência dessa parcela da população
+para um máximo global, por exemplo.
 Respeitando as diferenças de implementação em cada passo, devido as peculiaridades de cada tipo de problema
 de otimização proposto, essas etapas são presentes em todo algoritmo genético, e são bem resumidas no fluxograma
-presente na Figura \paref{fig:ga_flow}.
+presente na Figura \ref{fig:ga_flow}.
 
 \input{cap_01_diagrama_ag.tex}
 
@@ -116,5 +126,5 @@ Python. Já a segunda, se trata de uma biblioteca para a criação de gráficos 
 na ilustração de forma clara dos resultados obtidos.
 
 Os detalhes acerca da codificação escolhida para o material genético dos indivíduos, bem como os métodos utilizados
-nas etapas de seleção, recombinação e mutação foram propostos em \citeyear{roncaratti2006ga} por \citeauthor{roncaratti2006ga},
+nas etapas de seleção, recombinação e mutação foram propostos em  \citeyear{roncaratti2006ga} por  \citeauthor{roncaratti2006ga},
 e serão abordados de forma breve no capítulo seguinte.

@@ -110,11 +110,254 @@ presente na Figura \ref{fig:ga_flow}.
 
 \input{cap_01_diagrama_ag.tex}
 
+\section{Um Exemplo Físico: Ajuste das Estruturas de Banda de Dicalcogenetos de Metais de Transição}
+\label{sec_tmdcs_intro}
+
+Dicalcogenetos de metais de transição (TMDC, do inglês 
+\textit{transition-metal dichalcogenides}) são materiais cuja composição é
+descrita por \ch{MX2}, sendo \ch{M} um metal de transição e \ch{X} um calcogênio
+(\ch{S}, \ch{Se} ou \ch{Te}). São conhecidos cerca de 60 compostos de tal classe,
+dos quais cerca de 20 apresentam estrutura cristalina na forma de finas camadas, com
+espessuras na ordem de $10\si{\angstrom}$ \cite{kolobov2016tmdc}. Por essa razão, 
+podem ser categorizados como materiais bidimensionais.
+
+A maioria desses materiais são sintéticos, mas alguns podem ser encontrados na natureza,
+como \ch{MoS2}\trav dissulfeto de molibdênio\trav que ocorre naturalmente na
+forma do mineral molibdenita, sendo esse a principal fonte de obtenção do molibdênio.
+Uma fotografia desse mineral, bem como uma representação de sua estrutura cristalina
+são ilustrados na Figura \ref{fig:mos2}.
+
+\begin{figure}[ht]
+  \begin{subfigure}{0.49\textwidth}
+    \centering
+    \includegraphics[width=1.0\linewidth]{imagens/molybdenite.jpeg}
+    \caption{}
+    \label{fig:mos2a}
+  \end{subfigure}
+  \begin{subfigure}{0.49\textwidth}
+    \centering
+    \includegraphics[width=1.0\linewidth]{imagens/molybdenite_crystal.png}
+    \caption{}
+    \label{fig:mos2b}
+  \end{subfigure}
+  \caption{
+    \subref{fig:mos2a} Molibdenita incrustada em uma massa de quartzo.
+    \subref{fig:mos2b} Representação da estrutura cristalina da molibdenita. Molibdênio em azul, enxofre em amarelo.
+  }
+  \label{fig:mos2}
+\end{figure}
+
+\input{cap_01_diagrama_brillouin.tex}
+
+Esses materiais voltaram a ser amplamente estudados com a descoberta recente das
+propriedades eletrônicas do grafeno, pela qual K. S. Novoselov e A. K. Geim foram
+condecorados com o prêmio Nobel em 2010 \cite{kolobov2016tmdc}. Assim como no caso do grafeno, alguns
+TMDCs são semicondutores, característica essa que possibilita um grande leque de
+aplicações na indústria. 
+
+Dentre tais aplicações se destacam a manufatura de transistores, circuitos
+lógicos e amplificadores. Ademais, a estrutura eletrônica de alguns TMDCs torna
+propícia a formação de excitons em sua estrutura cristalina, o que abre margem
+para aplicações em dispositivos optoeletrônicos, como fotodetectores e células
+solares.
+
+Em todos esses casos é de fundamental importância que se tenha conhecimento
+acerca dos níveis de energia do sólido em questão. Em particular, é de interesse
+prático o cálculo dos níveis de energia das bandas de valência e de
+condução\trav último nível de energia ocupado e primeiro nível de energia não
+ocupado, respectivamente. Desses valores se calcula a energia necessária para a
+formação de excitons\footnote{
+  Um exciton é um par elétron-buraco formado pela transição de um elétron de
+  valência para uma camada de condução. Em alguns sólidos e moléculas pode haver o
+  transporte de excitons, fenômeno explorado semicondutores no geral. 
+}, o que é determinante na confecção dos dispositivos optoeletrônicos enumerados
+no parágrafo anterior. Esse valor é conhecido como o \textit{bandgap} do material.
+
+Existe uma área na engenharia\trav denominada engenharia de
+\textit{gap}\trav dedicada à manufatura de materiais com propriedades
+eletrônicas específicas, as quais são obtidas por meio do controle deste valor
+por intermédio de diversas técnicas. Um exemplo é o \textit{doping}, que
+consiste a introdução de átomos distintos à composição do material em sua rede
+cristalina, aplicada com frequência na fabricação de diodos e transistores
+usados nos mais diversos dispositivos eletrônicos.
+
+Usualmente, calcula-se tais bandas ao longo da primeira zona de Brillouin do
+cristal, a qual é a correspondente da célula primitiva no espaço recíproco\footnote{
+  Resumidamente, o espaço recíproco pode ser visto como  o espaço gerado 
+  pela transformada de Fourier dos vetores primitivos, os quais constituem
+  a chamada célula unitária, e por conseguinte, descrevem a estrutura 
+  cristalina de um sólido.
+}. Para
+o caso dos matérias em questão, a zona de Brillouin é do tipo hexagonal, e se
+encontra ilustrada ná Figura \ref{fig:brillouin}, conjuntamente aos principais
+pontos de simetria. Desses pontos de alta simetria, $K$ e $K'$ coincidem com os
+mínimos locais do \textit{bandgap} do sistema, e por isso são de maior
+relevância.
+
+Um dos métodos mais utilizados para o cálculo das bandas é a Teoria do Funcional
+Densidade (DFT, do inglês \textit{density-functional theory}), o qual é um
+modelo quântico computacional para a aproximação das soluções de sistemas
+quânticos com múltiplas partículas, amplamente utilizado na química e na física,
+particularmente em física do estado sólido e física da matéria condensada.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{imagens/mos2_bands.png}
+  \caption{
+    Energias das bandas de condução e de valência ao longo do caminho ilustrado
+    na Figura \ref{fig:brillouin} para o dissulfeto de molibdênio.
+  }
+  \label{fig:mos2_bands}
+\end{figure}
+
+No entanto, existem outros modelos para a estimativa das bandas de condução e de
+valência, como o modelo $k \cdot p$\trav também conhecido como modelo de baixas
+energias, descrito em \cite{liu2013tmdc}\trav o qual se propõe a aproximar essas
+bandas em torno de $K$ ou $K'$.
+
+Das vantagens do uso desse modelo pode-se destacar o fato de ser um modelo
+aproximativo analítico, o que facilita o desenvolvimento de uma intuição física
+acerca do material, possibilitando a observação do comportamento das bandas de
+energia com a variação dos parâmetros que as descrevem. Também trata-se de um
+modelo computacionalmente barato, possibilitando a aproximação de sistemas que
+seriam computacionalmente complexos quando estimados com o uso do método DFT.
+Outra vantagem que será explorada subsequentemente na seção
+\ref{sec_resultados_tmdcs} é a possibilidade da inclusão de um campo magnético
+normal à monocamada do TMDC à descrição do sistema graças à existência de uma
+forma analítica para a hamiltoniana do cristal, o que tornaria impraticável
+o uso do método DFT.
+
+No modelo $ k \cdot p $ a hamiltoniana na representação da base
+\begin{equation}
+  \left\{ \ket{\Psi_C,\uparrow} ; \ket{\Psi_C,\downarrow} ; \ket{\Psi_V,\uparrow} ; \ket{\Psi_V,\downarrow} \right\}
+  \label{eq:basis}
+\end{equation}
+é escrita na forma
+\begin{equation}
+  \hat{H}_{kp}(\bvec{k}) = \hat{H}_0 + \sum_{i=1}^3 \hat{H}_{kp}^{(i)}(\bvec{k})
+  \label{eq:total_ham}
+\end{equation}
+onde $ \Psi_C $ e $ \Psi_V $ são as funções de onda do sistema com o elétron de
+valência em sua camada original e na camada de condução, respectivamente e 
+$ \hat{H}_{kp}^{(i)}(\bvec{k}) $ corresponde ao termo de ordem $ i $ com respeito
+a $ \bvec{k} = (k_x, k_y, k_z) $, um ponto do espaço recíproco. 
+
+Normalmente o vetor $ \bvec{k} $ é escrito em uma base $ \{\bvec{e}_x,\bvec{e}_y,\bvec{e}_z\} $
+tal que $\Gamma$ se encontra na origem,
+$ \bvec{e}_2 = \nicefrac{\bvec{K}'}{|\bvec{K}'|} $, 
+$ \bvec{e}_3 = \nicefrac{\bvec{A}}{|\bvec{A}|} $ e 
+$ \bvec{e}_1 = \bvec{e}_2 \times \bvec{e}_2 $, sendo 
+$ \bvec{K}' $ e $ \bvec{A} $ os vetores que localizam os pontos de simetria $K'$ e $A$, respectivamente.
+No entanto, nesse modelo é necessário aplicar uma translação em tal base tal que
+a origem passe a ser localizada em $K$.
+
+Os termos da expansão da hamiltoniana em função de $ \bvec{k} $ são dados por
+\begin{align}
+  \begin{split}
+    &\hat{H}_0 =
+    \left(
+    \begin{matrix}
+        E_F + \Delta - \tau \lambda_c & 0                         & 0                             & 0                         \\
+        0                             & E_F + \tau \eta \lambda_v & 0                             & 0                         \\
+        0                             & 0                         & E_F + \Delta + \tau \lambda_c & 0                         \\
+        0                             & 0                         & 0                             & E_F - \tau \eta \lambda_v \\
+      \end{matrix}
+    \right) \\
+    &\hat{H}_{kp}^{(1)}(\bvec{k}) =
+    \left(
+    \begin{matrix}
+        0                                     & \gamma_0 f_1(\bvec{k},\tau) & 0                                     & 0                           \\
+        \gamma_0 f_1^{\dagger}(\bvec{k},\tau) & 0                           & 0                                     & 0                           \\
+        0                                     & 0                           & 0                                     & \gamma_0 f_1(\bvec{k},\tau) \\
+        0                                     & 0                           & \gamma_0 f_1^{\dagger}(\bvec{k},\tau) & 0                           \\
+      \end{matrix}
+    \right) \\
+    & \hat{H}_{kp}^{(2)}(\bvec{k}) =
+    \left(
+    \begin{matrix}
+        \gamma_1 f_2(\bvec{k})                & \gamma_3 f_3(\bvec{k},\tau) & 0                                     & 0                           \\
+        \gamma_3 f_3^{\dagger}(\bvec{k},\tau) & \gamma_2 f_2(\bvec{k})      & 0                                     & 0                           \\
+        0                                     & 0                           & \gamma_1 f_2(\bvec{k})                & \gamma_3 f_3(\bvec{k},\tau) \\
+        0                                     & 0                           & \gamma_3 f_3^{\dagger}(\bvec{k},\tau) & \gamma_2 f_2(\bvec{k})      \\
+      \end{matrix}
+    \right) \\
+    &\hat{H}_{kp}^{(3)}(\bvec{k}) =
+    \left(
+    \begin{matrix}
+        \gamma_4 f_4(\bvec{k})                & \gamma_6 f_5(\bvec{k},\tau) & 0                                     & 0                           \\
+        \gamma_6 f_5^{\dagger}(\bvec{k},\tau) & \gamma_5 f_4(\bvec{k})      & 0                                     & 0                           \\
+        0                                     & 0                           & \gamma_4 f_4(\bvec{k})                & \gamma_6 f_5(\bvec{k},\tau) \\
+        0                                     & 0                           & \gamma_6 f_5^{\dagger}(\bvec{k},\tau) & \gamma_5 f_4(\bvec{k})      \\
+      \end{matrix}
+    \right)
+  \end{split}
+\end{align}
+sendo $E_F$ a energia do nível de Fermi; $\Delta$ o \textit{bandgap} do sistema;
+$\lambda_c$ e $\lambda_v$ os termos de acoplamento spin-órbita nos níveis de
+condução e valência, respectivamente; $\eta$ um índice referente ao metal de
+transição em questão; $\tau$ o índice de vale, sendo $ \tau = 1 $ correspondendo
+ao vale em $K$, e $ \tau = -1 $ correspondendo ao vale em $K'$ e $ \gamma_i $
+são parâmetros de energia, os quais governam propriedades óticas do cristal. 
+As funções $f_i$ são dadas pelas expressões
+\begin{align}
+  \begin{split}
+    & f_1(\bvec{k},\tau) = a(\tau k_x - i k_y)                    \\
+    & f_2(\bvec{k}) = a^2(k_x^2 + k_y^2)                          \\
+    & f_3(\bvec{k},\tau) = a^2(\tau k_x + i k_y)^2                \\
+    & f_4(\bvec{k},\tau) = a^3 \tau k_x (k_x^2 - 3 k_y^2)         \\
+    & f_5(\bvec{k},\tau) = a^3 (k_x^2 + k_y^2) (\tau k_x - i k_y)
+  \end{split}
+\end{align}
+onde $a$ corresponde à constante de rede do respectivo sistema cristalino.
+
+Portanto, uma vez conhecidos os valores para os parâmetros descritos, as
+energias dos estados eletrônicos que compõem a base na Equação \ref{eq:basis}
+são obtidas pelo cálculo dos autovalores de $\hat{H}_{kp}$. Mas por vezes
+os valores dos parâmetros são desconhecidos, e, em posse das bandas de energia ao
+longo de um determinado caminho na zona de Brillouin, deseja-se obtê-los.
+Dados os autovalores de energia em um determinado caminho da zona de Brillouin
+como encontrar $\hat{H}_{kp}$ correspondente? Esse é justamente um caso em que
+um algoritmo do tipo genético pode se mostrar útil.
+
+Uma possível estratégia é tomar como espaço de busca uma região de $\R^{11}$
+\trav uma vez que serão tratados como parâmetros de ajuste $E_F$, $\Delta$, 
+$\lambda_c$, $\lambda_v$ e $\gamma_i$\trav e como função objetivo
+\begin{equation}
+  f(E_F, \Delta, \lambda_c, \lambda_v, \gamma_i) = 
+  \frac{1}{4 N} \sum_{k=1}^N \sum_{i=1}^4 \left( E_{ik}^{(dft)} - E_{ik}^{(kp)} \right)^2
+  \label{eq:tmdc_obj_function}
+\end{equation}
+onde $E_{ik}^{(dft)}$ corresponde ao $i$-ésimo maior valor de energia calculado no
+$k$-ésimo ponto de uma partição de tamanho $N$ de um caminho escolhido,
+$E_{ik}^{(kp)}$ é o $i$-ésimo maior autovalor de $\hat{H}_{kp}$. Tal soma não
+precisa abarcar todos os pontos conhecidos pra um caminho em particular: uma vez
+que o modelo só se aplica em uma vizinhança de $K$, pode-se restringir a soma à
+um conjunto de pontos em torno de $K$.
+
+Essa função nada mais é do que o desvio quadrático médio entre os dados
+conhecidos e os resultados de energia obtidos por meio do modelo, e espera-se
+que sua minimização com respeito aos parâmetros $E_F$, $\Delta$, $\lambda_c$,
+$\lambda_v$ e $\gamma_i$ ajustem bem as bandas de energia conhecidas em torno de
+$K$.
+
+Como para calcular o valor de $ f(E_F, \Delta, \lambda_c, \lambda_v, \gamma_i) $
+é necessário obter e ordenar os autovalores de $\hat{H}_{kp}$, qualquer método
+do tipo \textit{hill climbing} não se aplica para a solução do problema. Além disso, nesse
+problema o espaço de busca tem uma dimensão considerável, o que também sugere o
+uso de métodos estocásticos como um algoritmo do tipo genético.
+
+A eficácia de um algoritmo genético em um problema como este será posta a prova
+na Seção \ref{sec_resultados_tmdcs}, onde será feito o ajuste da Hamiltoniana do
+modelo $ k \cdot p $ para os cristais \ch{CrS2} e \ch{CrSe2}. Os resultados
+serão comparados com os obtidos por outro método estocástico \textit{Dual Anealling},
+também muito utilizado em problemas de otimização similares.
+
 \section{A Implementação do Algoritmo Genético}
 
 A linguagem de programação escolhida para a implementação do algoritmo foi Python\footnote{
-  Versão 3.10.4, com NumPy na versão 1.22.3, e Matplotlib na versão 3.5.1.
-  Código disponível em \url{https://github.com/davifeliciano/num_opt_ga}.
+  Versão 3.10.6, com NumPy na versão 1.23.2, Pandas na versão 1.4.3, Scipy na versão 1.9.1 e Matplotlib na versão 3.5.3.
+  Código da implementação do algoritmo genético disponível em \url{https://github.com/davifeliciano/num_opt_ga}.
+  Código e dados utilizados no ajuste dos níveis de energia de TMDCs disponíveis em \url{https://github.com/davifeliciano/kp_model_fit}.
 }. Amplamente utilizada no meio 
 acadêmico, trata-se de uma linguagem de fácil compreensão e aprendizado, além de contar com diversas bibliotecas
 já implementadas com o objetivo de resolver problemas recorrentes.
@@ -126,5 +369,12 @@ Python. Já a segunda, se trata de uma biblioteca para a criação de gráficos 
 na ilustração de forma clara dos resultados obtidos.
 
 Os detalhes acerca da codificação escolhida para o material genético dos indivíduos, bem como os métodos utilizados
-nas etapas de seleção, recombinação e mutação foram propostos em  \citeyear{roncaratti2006ga} por  \citeauthor{roncaratti2006ga},
+nas etapas de seleção, recombinação e mutação foram propostos em \citeyear{roncaratti2006ga} por \citeauthor{roncaratti2006ga},
 e serão abordados de forma breve no capítulo seguinte.
+
+No problema do ajuste das bandas de energia dos Dicalcogenetos de Metais de
+Transição foi utilizada a biblioteca Pandas para a leitura dos dados
+referentes às bandas de energia calculadas por meio do método DFT e para a
+gravação dos parâmetros ajustados em um arquivo de saída. A biblioteca Scipy
+também foi utilizada para comparar os resultados obtidos com o algoritmo
+genético implementado com o método \textit{Dual Annealing}, citado na seção anterior.

@@ -1,5 +1,12 @@
 \chapter{Metodologia}\label{cap_metodologia}
 
+Este capítulo tem por objetivo abordar os detalhes acerca do algoritmo genético
+desenvolvido. Aqui é definida a codificação utilizada para o material genético
+de um indivíduo de uma população em termos de sua posição no espaço de busca e
+são formalizados os processos de seleção e recombinação em função da codificação
+escolhida. Por fim, é apresentada uma estratégia elitista que será utilizada
+para melhorar a eficácia do algorítimo.
+
 \section{Codificação}
 
 \newcommand{\kth}[2]{{#1}^{(k)}_{#2}}
@@ -39,6 +46,7 @@ são vetores de $ \R^m $ e representam a posição do respectivo indivíduo no e
 Tal espaço é um subconjunto de $ \mathcal{C} $ definido pelo produto cartesiano
 \begin{equation}
   \mathcal{S} = \bigtimes_{j = 1}^m \; \left[ \xmin{j} \; , \; \xmax{j} \right] \mathcomma
+  \label{eq:search_region}
 \end{equation}
 sendo $ \xmin{j} $ e $ \xmax{j} $, respectivamente, os valores mínimo e máximo para
 a coordenada $ \kth{x}{j} $.
@@ -219,5 +227,7 @@ Ao final desse processo, prossegue-se para a etapa de recombinação, com o deta
 indivíduos terão probabilidade de mutação $p_1 = 0$, os $e_2$ indivíduos seguintes e o restante da população
 terão probabilidades de mutação não nulas $p_2$ e $p_3$.
 Como consequência, $S_{\epsilon}$ será parte da população seguinte, uma vez que a recombinação entre um
-indivíduo e seu clone dá origem a dois outros clones, na ausência de mutações. Ademais, cópias mutadas
-também estarão presentes, bem como cruzamentos de $S_{\epsilon}$ com $e_3$ indivíduos distintos.
+indivíduo e seu clone dá origem a dois outros clones, na ausência de mutações.
+Ademais, cópias de $S_{\epsilon}$ com mutações em seu material genético também
+estarão presentes, bem como cruzamentos de $S_{\epsilon}$ com até outros $e_3$
+indivíduos distintos.

@@ -1,41 +1,10 @@
-\chapter{Conclusão e Perspectivas}\label{cap_conclusao}
+\chapter{Conclusão}
+\label{cap_conclusao}
 
 Um algoritmo do tipo genético se mostrou eficaz na solução de problemas de otimização
 numérica, encontrando o máximo global com poucas iterações, sendo uma
 estratégia muito superior a qualquer método do tipo escalada de morro na
 tarefa de mapear não só os máximos locais, mas também os máximos globais. 
-
-Como pode ser observado, em todos os casos, os melhores indivíduos foram localizados 
-com precisão no máximo global. Não obstante, uma variedade genética proporcional a
-probabilidade de mutação foi mantida, dada uma escolha correta de $p_2$ e $p_3$ para cada
-problema. Nos casos em que $p_2 = 20\%$, os indivíduos, ao final do processo, se encontravam
-espalhados por todo o espaço de busca. 
-
-Vale ressaltar porém que o valor necessário de $p_2$ e $p_3$ para que uma população 
-tenha a distribuição desejada depende da função a ser otimizada, como pode ser visto
-comparando as Figuras \ref{fig:contour_damped_cossine_mut_20} e \ref{fig:evolution_damped_cossine_mut_20}
-com as Figuras \ref{fig:contour_near_gaussians_mut_20} e \ref{fig:evolution_near_gaussians_mut_20}.
-Assim, a influência dos parâmetros $p_2$, $p_3$, $e_1$, $e_2$ e $e_3$ no comportamento da população
-deve ser estudada em cada caso, afim de extrair do algoritmo o resultado desejado.
-
-Outra vantagem do algoritmo é que os máximos locais também puderam ser encontrados.
-Isso pode ser observado especialmente na Figura \ref{fig:evolution_damped_cossine_mut_20},
-onde visivelmente há uma concentração de indivíduos em $ f_1(x,y) \approx 0,74 $ e 
-$ f_1(x,y) \approx 0,29 $, que correspondem aos dois primeiros máximos locais.
-Algo similar pode ser observado na segunda função, nas primeiras gerações da Figura 
-\ref{fig:evolution_near_gaussians_mut_20}, com alguma concentração da população em
-vermelho em $f_1(x,y) \approx 0,8$.
-
-Claro que, mesmo nos casos em que não é possível inferir o máximo local da evolução
-de uma parcela da população\trav como ocorre na Figura \ref{fig:evolution_damped_cossine}\trav
-uma análise estatística feita sobre os valores das funções desempenho dos indivíduos e
-suas respectivas posições ainda seria capaz de acusá-lo.
-
-Em alguns casos, 100 gerações não são o suficiente para determinar a solução correta. Na população
-em vermelho na Figura \ref{fig:evolution_near_gaussians} houve uma convergência rápida para o
-máximo local, onde todos os 200 melhores indivíduos permaneceram durante toda a duração do teste.
-Algo similar ocorreu na população em verde, para a maioria dos indivíduos da elite. Entretanto, 
-o número de gerações sempre pode ser escolhido conforme a necessidade.
 
 Em problemas mais complexos, ou que demandem maior precisão, o espaço de busca pode ser restrito
 para uma região menor, contendo os candidatos a solução obtidos anteriormente. Na falta de

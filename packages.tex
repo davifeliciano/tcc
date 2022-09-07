@@ -37,6 +37,19 @@
 \usepackage{amsmath}
 \usepackage{mathtools}
 \usepackage{nicefrac}
+\usepackage{physics}
+
+% Pacote para formulas químicas
+\usepackage{chemformula}
+
+% Pacote para unidades do SI
+\usepackage{siunitx}
+\sisetup{output-decimal-marker = {,}}
+\sisetup{group-digits=false}
+
+% Pacote para evitar que figuras sejam renderizadas fora da seção correspondente
+\usepackage[section]{placeins}
+
 \usepackage{subcaption}
 \captionsetup{subrefformat=parens}
 
@@ -65,6 +78,7 @@
 \newcommand{\mathperiod}{\;\mathrm{.}}
 \newcommand{\mathcomma}{\;\mathrm{,}}
 \newcommand{\mathdots}{\;\cdots\;}
+\newcommand{\bvec}[1]{\mathbf{#1}}
 
 
 % ---

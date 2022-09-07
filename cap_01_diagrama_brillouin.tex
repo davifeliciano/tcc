@@ -1,0 +1,61 @@
+\newcommand\xsla{-1.2}
+\newcommand\ysla{0.505}
+\newcommand\hexheight{3em}
+\newcommand\hexside{2em}
+
+\newcommand\hex[3][]{
+  \begin{scope}[
+      #1,
+      xscale=-1,
+      yshift=#3,
+      yslant=\ysla,
+      xslant=\xsla,
+      every node/.style={anchor=west,regular polygon,regular polygon sides=6,draw,inner sep=\hexside},
+      transform shape
+    ]
+    \node (hex_#2) {};
+  \end{scope}
+}
+
+\newcommand\hexhidden[3][]{
+  \begin{scope}[
+      #1,
+      xscale=-1,
+      yshift=#3,
+      yslant=\ysla,
+      xslant=\xsla,
+      every node/.style={anchor=west,regular polygon,regular polygon sides=6,inner sep=\hexside,draw,dotted},
+      transform shape
+    ]
+    \node (hex_#2) {};
+  \end{scope}
+}
+
+\begin{figure}[b]
+  \centering
+  \begin{tikzpicture}
+    \hex{top}{\hexheight}
+    \hexhidden{middle}{0}
+    \hex{bottom}{-\hexheight}
+
+    \foreach \corn in {1,...,6}
+    \draw (hex_top.corner \corn) -- (hex_bottom.corner \corn);
+
+    % Caminho no qual as bandas são calculadas
+    \draw[thick,myarrow=0.5] (hex_middle.center) -- (hex_middle.corner 4);
+    \draw[thick,myarrow=0.5] (hex_middle.corner 4) -- (hex_middle.side 3);
+
+    % Pontos de simetria
+    \draw[fill=black] (hex_middle.center) circle (2pt) node[right]{$\Gamma$};
+    \draw[fill=black] (hex_middle.corner 4) circle (2pt) node[below left]{$K$};
+    \draw[fill=black] (hex_middle.side 3) circle (2pt) node[below right]{$M$};
+    \draw[fill=black] (hex_middle.corner 3) circle (2pt) node[above right]{$K'$};
+    \draw[fill=black] (hex_top.center) circle (2pt) node[above right]{$A$};
+  \end{tikzpicture}
+  \caption{
+    Zona de Brillouin para monocamadas de TMDCs e principais pontos de simetria.
+    Geralmente as bandas de valência e de condução são calculadas ao longo desses
+    pontos, como no caminho exemplificado.
+  }
+  \label{fig:brillouin}
+\end{figure}

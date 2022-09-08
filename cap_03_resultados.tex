@@ -276,9 +276,22 @@ Os gráficos com os resultados obtidos por meio dos dois métodos utilizados
 aplicados a cada um dos TMDCs se encontram nas Figuras \ref{fig:crs2} e
 \ref{fig:crse2}, com os parâmetros ajustados detalhados nas Tabelas
 \ref{tab:crs2} e \ref{tab:crse2}. Observando esses gráficos, é possível atestar
-a eficácia de ambos os métodos de ajuste, uma vez que as bandas de energia
-da expansão de 3ª ordem do modelo $k \cdot p$ praticamente coincidiram
-\trav na vizinhança de $K$\trav com as bandas calculadas pelo método DFT.
+a eficácia de ambos os métodos de ajuste, uma vez que as bandas de energia da
+expansão de 3ª ordem do modelo $k \cdot p$ praticamente coincidiram \trav na
+vizinhança de $K$\trav com as bandas calculadas pelo método DFT\footnote{
+  O cálculo DFT foi realizado utilizando o pacote Quantum Espresso, as equações de
+  Kohn-Sham foram resolvidas utilizando uma base de ondas planas e projetores PAW
+  \cite{paw1994} para tratar os elétrons do "caroço", sendo que foram utilizados projetores do
+  tipo \textit{scalar relativistic} para optimização da estrutura e \textit{full relativistic}
+  para o cálculo da estrutura de bandas. A optimização da estrutura  foi feita
+  mediante a minimização do tensor de estresse, considerando a interação de van
+  der Waals Grimme D3 \cite{grime2006} \cite{grimme2010}, utilizando o algoritmo
+  BFGS e restringindo o grau de liberdade referente ao tamanho do vácuo da
+  monocamada na direção z. Para isso utilizamos uma malha $ 16 \times 16 \times 1 $
+  e as seguintes energias de corte para a base de ondas planas: 49 Ry
+  para os três sistemas estudados. Os mesmos parâmetros de cálculo foram
+  utilizados para as propriedades eletrônicas. 
+}.
 
 \begin{table}[p]
   \centering
@@ -318,7 +331,7 @@ enunciado na Seção \ref{sec_tmdcs_intro}, o modelo $ k \cdot p $ possibilita a
 inclusão de um termo de interação referente a um campo magnético uniforme 
 $ \bvec{B} = B e_z $ à hamiltoniana $ \hat{H}_{kp} $. Assim, os novos níveis de
 energia das bandas de valência e de condução serão dados pelos novos
-autovalores. Fazendo isso para a expansão de 1ª ordem obteremos as energias
+autovalores. Calculando-os para a expansão de 1ª ordem obteremos as energias
 \begin{equation}
   E_\pm (B, n) = \frac{\lambda_v \tau s_z}{2} \pm 
   \sqrt{

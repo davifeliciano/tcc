@@ -315,8 +315,8 @@ também apresentou uma variação muito pequena, porém com uma troca de sinal.
 
 Dito isso, pode-se agora fazer uso prático dos parâmetros ajustados. Como
 enunciado na Seção \ref{sec_tmdcs_intro}, o modelo $ k \cdot p $ possibilita a
-inclusão de um termo de interação referente a um campo magnético uniforme $
-  \bvec{B} = B e_z $ à hamiltoniana $ \hat{H}_{kp} $. Assim, os novos níveis de
+inclusão de um termo de interação referente a um campo magnético uniforme 
+$ \bvec{B} = B e_z $ à hamiltoniana $ \hat{H}_{kp} $. Assim, os novos níveis de
 energia das bandas de valência e de condução serão dados pelos novos
 autovalores. Fazendo isso para a expansão de 1ª ordem obteremos as energias
 \begin{equation}
@@ -328,9 +328,28 @@ autovalores. Fazendo isso para a expansão de 1ª ordem obteremos as energias
   \mathcomma
   \label{eq:landau_levels}
 \end{equation}
-onde os sinais + e - se referem, respectivamente, as bandas de condução e de valência, e
-$ s_z = 1 $ e $ s_z = -1 $ representam estados de spin up e down, e $n$ é um inteiro não
-negativo \cite{dias2016tmdc}.
+onde os sinais $+$ e $-$ se referem, respectivamente, as bandas de condução e de
+valência, e $ s_z = 1 $ e $ s_z = -1 $ representam estados de spin \textit{up} e
+\textit{down}, e $n$ é um natural não nulo \cite{dias2016tmdc}. Para o caso
+particular em que $ n = 0 $, 
+\begin{equation}
+  E(n = 0) =
+  \begin{cases}
+    - \nicefrac{\Delta}{2} + \lambda_v s_z \;, & \text{se } \tau = 1  \\
+    \nicefrac{\Delta}{2}                   \;, & \text{se } \tau = -1 \\
+  \end{cases}
+  \label{eq:landau_level_for_null_n}
+\end{equation}
+correspondendo a níveis de valência e de condução.
+
+Os gráficos das Figuras \ref{fig:crs2_k_valley_landau_levels} e
+\ref{fig:crse2_k_valley_landau_levels} ilustram o novo comportamento das bandas
+de condução e de valência no vale $K$ para ambos os materiais estudados: com a
+presença de um campo externo, há a quebra de degenerescência dando origem a
+novos níveis de energia, conhecidos como níveis de Landau. De forma similar, nas
+Figuras \ref{fig:crs2_k_prime_valley_landau_levels} e
+\ref{fig:crse2_k_prime_valley_landau_levels} são retratados estes mesmos níveis
+para o vale $K'$.
 
 \begin{figure}[p]
   \centering
@@ -375,25 +394,46 @@ negativo \cite{dias2016tmdc}.
 \begin{figure}[p]
   \centering
   \begin{subfigure}{\textwidth}
-    \includegraphics[width=\textwidth]{imagens/crs2_landau_levels.png}
+    \includegraphics[trim=0 0.28cm 0 0.9cm,clip,width=\textwidth]{imagens/crs2_k_valley_landau_levels.png}
     \caption{}
-    \label{fig:crs2_landau_levels}
+    \label{fig:crs2_k_valley_landau_levels}
   \end{subfigure}
-  \begin{subfigure}{0.9\textwidth}
-    \includegraphics[width=\textwidth]{imagens/crse2_landau_levels.png}
+  \begin{subfigure}{\textwidth}
+    \includegraphics[trim=0 0.28cm 0 0.9cm,clip,width=\textwidth]{imagens/crse2_k_valley_landau_levels.png}
     \caption{}
-    \label{fig:crse2_landau_levels}
+    \label{fig:crse2_k_valley_landau_levels}
   \end{subfigure}
   \caption{
-    Gráficos dos níveis de Landau para os materiais \ch{CrS2}
-    \subref{fig:crs2_landau_levels} e \ch{CrSe2}
-    \subref{fig:crse2_landau_levels} em termos do campo magnético externo
-    aplicado na direção normal à respectiva monocamada.
+    Gráficos dos níveis de Landau no vale $K$ para os materiais
+    \subref{fig:crs2_k_valley_landau_levels} \ch{CrS2} e
+    \subref{fig:crse2_k_valley_landau_levels} \ch{CrSe2} em termos da magnitude
+    do campo magnético externo aplicado na direção normal a respectiva
+    monocamada.
   }
-  \label{fig:landau_levels}
+  \label{fig:k_valley_landau_levels}
 \end{figure}
 
-
+\begin{figure}[p]
+  \centering
+  \begin{subfigure}{\textwidth}
+    \includegraphics[trim=0 0.28cm 0 0.9cm,clip,width=\textwidth]{imagens/crs2_k_prime_valley_landau_levels.png}
+    \caption{}
+    \label{fig:crs2_k_prime_valley_landau_levels}
+  \end{subfigure}
+  \begin{subfigure}{\textwidth}
+    \includegraphics[trim=0 0.28cm 0 0.9cm,clip,width=\textwidth]{imagens/crse2_k_prime_valley_landau_levels.png}
+    \caption{}
+    \label{fig:crse2_k_prime_valley_landau_levels}
+  \end{subfigure}
+  \caption{
+    Gráficos dos níveis de Landau no vale $K'$ para os materiais
+    \subref{fig:crs2_k_prime_valley_landau_levels} \ch{CrS2} e
+    \subref{fig:crse2_k_prime_valley_landau_levels} \ch{CrSe2} em termos da
+    magnitude do campo magnético externo aplicado na direção normal a respectiva
+    monocamada.
+  }
+  \label{fig:k_prime_valley_landau_levels}
+\end{figure}
 
 \section{Testes de Performance}
 

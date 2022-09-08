@@ -178,12 +178,9 @@ for lattice_name, lattice_const in lattices.items():
     )
 
     colors = ("red", "blue")
-    linestyles = ((0, (5, 5)), "solid")
-    mag_field = np.linspace(1, 1e7, 1000)
+    mag_field = np.linspace(0, 20, 100)
 
-    for color, linestyle, (valley_name, valley_index) in zip(
-        colors, linestyles, valleys.items()
-    ):
+    for color, (valley_name, valley_index) in zip(colors, valleys.items()):
         cond_down_level = landau_levels(
             lattice_const=lattice_const,
             delta=delta,
@@ -191,7 +188,7 @@ for lattice_name, lattice_const in lattices.items():
             gamma_0=gamma_0,
             valley_index=valley_index,
             mag_field=mag_field,
-            spin="down",
+            spin="down" if valley_index == 1 else "up",
             n=1 if valley_index == 1 else 0,
         )[1]
 
@@ -202,7 +199,7 @@ for lattice_name, lattice_const in lattices.items():
             gamma_0=gamma_0,
             valley_index=valley_index,
             mag_field=mag_field,
-            spin="up",
+            spin="up" if valley_index == 1 else "down",
             n=0 if valley_index == 1 else 1,
         )[0]
 
@@ -211,12 +208,11 @@ for lattice_name, lattice_const in lattices.items():
             mag_field,
             bandgap,
             color=color,
-            linestyle=linestyle,
             label=rf"$\tau = {valley_index}$",
-            zorder=valley_index,
         )
 
-    ax.legend()
+    ax.grid()
+    ax.legend(framealpha=1.0)
 
     basename = f"{lattice_name}_bandgap_field"
     filename = images_dir.joinpath(f"{basename}.png")

@@ -177,10 +177,13 @@ for lattice_name, lattice_const in lattices.items():
         xlabel=r"$B$ (\si{\tesla})",
     )
 
-    colors = ("blue", "red")
+    colors = ("red", "blue")
+    linestyles = ((0, (5, 5)), "solid")
     mag_field = np.linspace(1, 1e7, 1000)
 
-    for color, (valley_name, valley_index) in zip(colors, valleys.items()):
+    for color, linestyle, (valley_name, valley_index) in zip(
+        colors, linestyles, valleys.items()
+    ):
         cond_down_level = landau_levels(
             lattice_const=lattice_const,
             delta=delta,
@@ -204,7 +207,14 @@ for lattice_name, lattice_const in lattices.items():
         )[0]
 
         bandgap = cond_down_level - valence_up_level
-        ax.plot(mag_field, bandgap, color=color, label=rf"$\tau = {valley_index}$")
+        ax.plot(
+            mag_field,
+            bandgap,
+            color=color,
+            linestyle=linestyle,
+            label=rf"$\tau = {valley_index}$",
+            zorder=valley_index,
+        )
 
     ax.legend()
 

@@ -104,7 +104,6 @@ results_dir = project_dir.joinpath("results")
 
 valleys = {"k_valley": 1, "k_prime_valley": -1}
 lattices = {"crs2": CRS2_LATTICE, "crse2": CRSE2_LATTICE}
-titles = {"crs2": r"\ch{CrS2}", "crse2": r"\ch{CrSe2}"}
 
 for lattice_name, lattice_const in lattices.items():
     for valley_name, valley_index in valleys.items():
@@ -171,12 +170,7 @@ for lattice_name, lattice_const in lattices.items():
 
     # Creating gap vs mag_field plot
     fig, ax = plt.subplots()
-    ax.set(
-        title=titles[lattice_name],
-        ylabel=r"$\Delta$ (\si{\eV})",
-        xlabel=r"$B$ (\si{\tesla})",
-    )
-
+    ax.set(ylabel=r"$\Delta$ (\si{\eV})", xlabel=r"$B$ (\si{\tesla})")
     colors = ("red", "blue")
     mag_field = np.linspace(0, 20, 100)
 

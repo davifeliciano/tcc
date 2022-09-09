@@ -211,12 +211,21 @@ o número de gerações sempre pode ser escolhido conforme a necessidade.
 \label{sec_resultados_tmdcs}
 
 Para o ajuste das bandas de energia dos materiais \ch{CrS2} e \ch{CrSe2} foram
-executados 16 processos simultâneos com 1000 indivíduos cada, evoluídos no
-decorrer de 100 gerações, com probabilidades de mutação $ p_2 = p_3 = 5\% $ e
+executados 16 processos concorrentes com 1000 indivíduos cada, evoluídos no
+decorrer de 200 gerações, com probabilidades de mutação $ p_2 = p_3 = 5\% $ e
 $ h = 2 $. A distribuição da elite nas populações ocorreu de forma que $ e_1 =
   5\% $, $ e_2 = e_3 = 10\% $, sendo os percentuais tomados em relação ao tamanho
 da população. A região de busca considerada no processo de ajuste é dada pelo
 produto cartesiano dos intervalos na Tabela \ref{tab:search_region}.
+
+É importante mencionar que foi usada uma estratégia para o refinamento do espaço
+de busca, a qual consistiu em, após decorridas as primeiras 100 gerações, o
+espaço de busca de cada população era limitado a um subespaço com 10\% do
+volume, centrado no melhor indivíduo. Então novas populações eram
+inicializadas\trav com uma distribuição uniforme de indivíduos na região
+refinada\trav e o processo era retomado pelas 100 gerações restantes.
+Ao final desse processo, toma-se o melhor indivíduo de todas as populações
+como resultado.
 
 \begin{table}[h]
   \centering
@@ -248,7 +257,10 @@ Para fins de comparação, foi feito um ajuste da mesma função da Equação
 }. Trata-se de um método também estocástico, com enfase em busca local e global,
 assim como o Algoritmo Genético implementado. Para a busca, foi utilizado um
 número máximo de iterações de 2000, e uma temperatura inicial 
-$ T_{q_v}(1) = \num{2.5e4} $. Quanto aos parâmetros relativos ao modelo $k \cdot p$, para
+$ T_{q_v}(1) = \num{2.5e4} $. Analogamente ao método anterior, tomamos para o
+ajuste o melhor resultado de 16 processos concorrentes.
+
+Quanto aos parâmetros relativos ao modelo $k \cdot p$, para
 \ch{CrS2} e \ch{CrSe2}, os parâmetros de rede considerados para os cálculos, bem
 como os valores esperados para $ \Delta $ se encontram enumerados na Tabela
 \ref{tab:lattice_delta}. Para o metal de transição em questão, $ \eta = 1 $ e
@@ -334,7 +346,7 @@ $ \bvec{B} = B e_z $ à hamiltoniana $ \hat{H}_{kp} $. Assim, os novos níveis d
 energia das bandas de valência e de condução serão dados pelos novos
 autovalores. Calculando-os para a expansão de 1ª ordem obteremos as energias
 \begin{equation}
-  E_\pm (B, n) = \frac{\lambda_v \tau s_z}{2} \pm 
+  E_\pm (B, n, s_z) = \frac{\lambda_v \tau s_z}{2} \pm 
   \sqrt{
     \frac{(\Delta - \lambda_v \tau s_z)^2}{4} + 
     \frac{2 \gamma_0^2 a^2 e B n}{\hbar}
@@ -362,11 +374,33 @@ de condução e de valência no vale $K$ para ambos os materiais estudados: com 
 presença de um campo externo, há a quebra de degenerescência dando origem a
 novos níveis de energia, conhecidos como níveis de Landau. De forma similar, nas
 Figuras \ref{fig:crs2_k_prime_valley_landau_levels} e
-\ref{fig:crse2_k_prime_valley_landau_levels} são retratados estes mesmos níveis
+\ref{fig:crse2_k_prime_valley_landau_levels} é retratado esse mesmo fenômeno
 para o vale $K'$\footnote{
-  É importante frisar que nessas figuras, o nível de referência de energia
-  difere dos utilizados nas Figuras \ref{fig:crs2} e \ref{fig:crse2}.
+  É importante frisar que nas Figuras \ref{fig:k_valley_landau_levels} e
+  \ref{fig:k_prime_valley_landau_levels}, o nível de referência de energia difere
+  dos utilizados nas Figuras \ref{fig:crs2} e \ref{fig:crse2}.
 }.
+
+Como consequência, o \textit{bandgap} do material também será dependente de $B$ de forma que
+\begin{equation}
+  \Delta(B) = 
+  \begin{cases}
+    E_+(B, 1, -1) - \left( \lambda_v - \nicefrac{\Delta}{2} \right) \;, & \text{se } \tau = 1  \\
+    \nicefrac{\Delta}{2} - E_-(B, 1, -1) \;,                            & \text{se } \tau = -1 \\
+  \end{cases}
+  \mathcomma
+  \label{eq:new_bandgap}
+\end{equation}
+havendo a quebra da simetria entre os valores calculados para os vales $K$ e
+$K'$, como é destacado nas Figuras \ref{fig:crs2_bandgap_field} e
+\ref{fig:crse2_bandgap_field}. Tal comportamento pode ser explorado em
+aplicações, uma vez que quanto maior o campo externo, maior é a dificuldade na
+criação de um exciton, o que respalda em uma menor capacidade condutiva do
+material.  
+
+Isso pode criar margem para aplicações similares a sensores do tipo Hall, os quais
+também tem por princípio o controle da condutividade com a aplicação de um campo
+magnético externo.
 
 \begin{figure}[p]
   \centering
@@ -452,18 +486,67 @@ para o vale $K'$\footnote{
   \label{fig:k_prime_valley_landau_levels}
 \end{figure}
 
+\begin{figure}[p]
+  \centering
+  \begin{subfigure}{\textwidth}
+    \includegraphics[trim=0 0 0 1.0cm,clip,width=\textwidth]{imagens/crs2_bandgap_field.png}
+    \caption{}
+    \label{fig:crs2_bandgap_field}
+  \end{subfigure}
+  \begin{subfigure}{\textwidth}
+    \includegraphics[trim=0 0 0 1.0cm,clip,width=\textwidth]{imagens/crse2_bandgap_field.png}
+    \caption{}
+    \label{fig:crse2_bandgap_field}
+  \end{subfigure}
+  \caption{
+    Gráficos de $\Delta$ nos vales $K$ e $K'$ para as monocamadas de
+    \subref{fig:crs2_bandgap_field} \ch{CrS2} e \subref{fig:crse2_bandgap_field}
+    \ch{CrSe2} em termos da magnitude do campo magnético externo.
+  }
+  \label{fig:bandgap_field}
+\end{figure}
+
 \section{Testes de Performance}
 
-Em testes de tempo de execução o programa escalou bem, sendo sua complexidade temporal $\mathcal{O}(n)$ para o
-tamanho de população, e $\mathcal{O}(g)$ para número de gerações decorridas. 
-Nas figuras exibidas nesse capítulo, o tempo médio decorrido na evolução das populações de 1000 indivíduos
-foi de 15 segundos\footnote{
-  Tempo obtido usando uma máquina com processador Intel i7-8550U com frequência máxima de 4GHz.
-  É importante frisar aqui as evoluções das 8 populações ocorreram em 8 processos em paralelo.
-  Assim, é possível que, para uma única população, os tempos de execução sejam ligeiramente menores.
-} enquanto que o tamanho da população necessário para que o processo tomasse mais de uma hora foi
-superior a $n = 10^5$, para o mesmo número de gerações.
+Em testes de tempo de execução o algoritmo desenvolvido escalou bem, sendo sua
+complexidade temporal $\mathcal{O}(n)$ para o tamanho de população, e
+$\mathcal{O}(g)$ para número de gerações decorridas. 
 
-Isso mostra que a implementação é escalável para grandes valores de $n$, o que pode ser desejável em
-algumas aplicações. É posto a prova também a performance da biblioteca NumPy, cujas funções e estruturas
-de dados implementadas se mostraram altamente otimizadas.
+Nas figuras exibidas na
+Seção \ref{sec_test_functions}, o tempo médio decorrido na evolução das
+populações de 1000 indivíduos foi de 15 segundos\footnote{
+  Tempo obtido usando uma máquina com processador Intel® Core™ i7-8550U com 8
+  processadores lógicos com frequência base de operação de 1,8GHz e frequência
+  máxima de 4GHz. É importante frisar aqui as evoluções das 8 populações ocorreram
+  em 8 processos concorrentes. Assim, é possível que, para uma única população, os
+  tempos de execução sejam ligeiramente menores, abdicando da escala da população. 
+} enquanto que o tamanho da população necessário
+para que o processo tomasse mais de uma hora foi superior a $n = 10^5$, para o
+mesmo número de gerações.
+
+Já para os ajustes feitos na Seção \ref{sec_resultados_tmdcs}, o tempo médio
+demandado para a evolução dos 16000 indivíduos pelas 200 gerações foi cerca de
+15 minutos para o ajuste de 1ª ordem e 25 minutos para o ajuste de 3ª ordem
+\footnote{
+  Tempo obtido usando uma máquina com processador  Intel® Xeon® E5-2650 v2 com 16
+  processadores lógicos com frequência base de operação de 2,6GHz e frequência
+  máxima de 3,4GHz. Novamente, as iterações de cada uma das 16 populações
+  ocorreram em 16 processos concorrentes. As mesmas condições foram usadas
+  para a otimização via \textit{Dual Annealing}.
+}. Em contrapartida, os ajustes feitos pelo método alternativo 
+\textit{Dual Annealing} tomaram em média um tempo de 2 minutos para a expansão de 1ª ordem e
+10 minutos para os cálculos de 3ª ordem.
+
+O fato desse método também ser implementado em Python via NumPy\footnote{
+  Código-fonte disponível em \url{https://github.com/scipy/scipy/blob/main/scipy/optimize/_dual_annealing.py}.
+} sugere que melhorias podem ser feitas na implementação realizada para a confecção
+deste trabalho, de forma a melhorar o desempenho. Isso deve ser feito reformulando
+os códigos-fonte em questão de forma a abusar ao máximo das estruturas de dados e
+funções da biblioteca NumPy, uma vez que estes agregam mais performance.
+
+Todavia, esta diferença no tempo de execução de ambos os métodos não faz do
+algoritmo proposto no Capítulo \ref{cap_metodologia} uma estratégia ineficaz, já
+que foram atingidos resultados favoráveis. Resultados com valores ainda menores
+para $f$ podem ser atingidos com o uso de mais iterações e de outras combinações
+de valores para $p_2$, $p_3$, $e_1$, $e_2$, $e_3$ e $h$, po que não foi explorado
+na obtenção dos resultados da seção anterior.

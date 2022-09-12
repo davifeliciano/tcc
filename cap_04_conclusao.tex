@@ -1,24 +1,42 @@
 \chapter{Conclusão}
 \label{cap_conclusao}
 
-Um algoritmo do tipo genético se mostrou eficaz na solução de problemas de otimização
-numérica, encontrando o máximo global com poucas iterações, sendo uma
-estratégia muito superior a qualquer método do tipo escalada de morro na
-tarefa de mapear não só os máximos locais, mas também os máximos globais. 
+O algoritmo genético implementado se mostrou eficaz na solução de problemas de
+otimização numérica, encontrando estimativas aceitáveis para os máximos globais
+das funções utilizadas com poucas iterações, como pode ser observado nas Figuras
+\ref{fig:contour_damped_cossine} a \ref{fig:evolution_near_gaussians_mut_20}. Assim, foi
+confirmada a vantagem do uso desse tipo de processo sobre métodos do tipo
+\textit{hill climbing} na tarefa de mapear não só os máximos globais, mas também
+os máximos locais de funções pouco comportadas.
 
-Em problemas mais complexos, ou que demandem maior precisão, o espaço de busca pode ser restrito
-para uma região menor, contendo os candidatos a solução obtidos anteriormente. Na falta de
-candidatos, o oposto pode ser feito, expandindo a região de busca. 
+Foi constatado também o impacto do uso de uma maior probabilidade de mutação na
+evolução dos indivíduos, ocasionando uma maior distribuição de indivíduos como
+ilustrado nas Figuras \ref{fig:contour_damped_cossine_mut_20} e
+\ref{fig:contour_near_gaussians_mut_20}. O uso dessa estratégia pode facilitar a
+localização dos extremos locais, como mostra a comparação entre as Figuras
+\ref{fig:evolution_damped_cossine} e \ref{fig:evolution_damped_cossine_mut_20}.
 
-Uma outra característica 
-do código implementado é a facilidade de paraleliza-lo. Em todos os resultados exibidos no capítulo
-anterior, a evolução de cada população foi computada de forma concorrente em 8 processos distintos,
-aumentando assim a amostra de indivíduos sem acréscimo significativo no tempo de execução.
+Ao aplicar o algorítimo para o ajuste dos parâmetros da hamiltoniana do modelo 
+$ k \cdot p $ para os materiais \ch{CrS2} e \ch{CrSe2} foi posta a prova sua
+eficácia para a procura em espaços de busca de maior dimensão. O ajuste foi
+feito minimizando o desvio quadrático médio entre seus autovalores e as energias
+correspondentes calculadas via DFT, uma estratégia que possibilita o uso da
+biblioteca desenvolvida para o ajuste de curvas em geral.
 
-Em suma, o algoritmo desenvolvido se mostrou bastante versátil, e produziu resultados favoráveis nos 
-testes apresentados, sendo a maior dificuldade atrelada a solução do problema a determinação dos
-parâmetros que melhor possibilitam o sucesso na busca dos extremos. As capacidades e limitações serão postos
-a prova em outros testes subsequentes e nas futuras etapas do trabalho, onde será feita sua aplicação 
-no estudo acerca de algum sistema físico.
+Com os parâmetros ajustados, foram calculados os níveis de Landau que surgem nos
+vales $K$ e $K'$ como consequência da aplicação de um campo magnético externo
+normal à monocamada desses materiais. O resultado obtido coincidiu com os
+existentes para o \ch{MoS2} \cite{dias2016tmdc}, o que comprova a precisão do
+modelo na aproximação das bandas de condução e de valência na vizinhança desses
+vales.
+
+Finalmente, a comparação entre o tempo de execução do algoritmo genético no
+ajuste das bandas de energia com o do algoritmo \textit{Dual Annealing} nos
+alerta para a possibilidades de melhorias no desempenho da implementação do
+algoritmo, uma vez que o último também é implementado em Python, via NumPy, e
+apresentou melhor performance. Tendo isso em vista, para problemas de maior
+complexidade, o ideal é reescrever a biblioteca em uma linguagem de maior
+desempenho, como C ou Fortran, ou mudar sua arquitetura de forma a fazer uso
+mais intensivo do NumPy nas operações de maior custo, evitando o uso de listas.
 
 \nocite{ribeiro2013ga}

@@ -157,7 +157,7 @@ aplicações na indústria.
 
 Dentre tais aplicações se destacam a manufatura de transistores, circuitos
 lógicos e amplificadores. Ademais, a estrutura eletrônica de alguns TMDCs torna
-propícia a formação de excitons em sua estrutura cristalina, o que abre margem
+propícia a formação de éxcitons em sua estrutura cristalina, o que abre margem
 para aplicações em dispositivos optoeletrônicos, como fotodetectores e células
 solares.
 
@@ -166,10 +166,10 @@ acerca dos níveis de energia do sólido em questão. Em particular, é de inter
 prático o cálculo dos níveis de energia das bandas de valência e de
 condução\trav último nível de energia ocupado e primeiro nível de energia não
 ocupado, respectivamente. Desses valores se calcula a energia necessária para a
-formação de excitons\footnote{
-  Um exciton é um par elétron-buraco formado pela transição de um elétron de
+formação de éxcitons\footnote{
+  Um éxciton é um par elétron-buraco formado pela transição de um elétron de
   valência para uma camada de condução. Em alguns sólidos e moléculas pode haver o
-  transporte de excitons, fenômeno explorado semicondutores no geral. 
+  transporte de éxcitons, fenômeno explorado semicondutores no geral. 
 }, o que é determinante na confecção dos dispositivos optoeletrônicos enumerados
 no parágrafo anterior. Esse valor é conhecido como o \textit{bandgap} do material.
 
@@ -182,17 +182,29 @@ cristalina, aplicada com frequência na fabricação de diodos e transistores
 usados nos mais diversos dispositivos eletrônicos.
 
 Usualmente, calcula-se tais bandas ao longo da primeira zona de Brillouin do
-cristal, a qual é a correspondente da célula primitiva no espaço recíproco\footnote{
-  Resumidamente, o espaço recíproco pode ser visto como  o espaço gerado 
-  pela transformada de Fourier dos vetores primitivos, os quais constituem
-  a chamada célula unitária, e por conseguinte, descrevem a estrutura 
-  cristalina de um sólido.
-}. Para
-o caso dos matérias em questão, a zona de Brillouin é do tipo hexagonal, e se
-encontra ilustrada ná Figura \ref{fig:brillouin}, conjuntamente aos principais
-pontos de simetria. Desses pontos de alta simetria, $K$ e $K'$ coincidem com os
-mínimos locais do \textit{bandgap} do sistema, e por isso são de maior
-relevância.
+cristal, a qual é a correspondente da célula primitiva de Wigner-Seitz na rede recíproca
+\footnote{
+  Em estado sólido, uma rede cristalina é representada pelos vetores primitivos
+  $\bvec{a}_1$, $\bvec{a}_2$ e $\bvec{a}_2$, que formam a célula unitária de um
+  cristal. Esses vetores são tais que para quaisquer posições $\bvec{r}$ e
+  $\bvec{r}'$ das quais a disposição dos átomos do cristal permanece invariante,
+  $\bvec{r}' = \bvec{r} + \sum_i u_i \bvec{a}_i $ para algum $ \bvec{u} \in \Z^3$.
+  Assim, a posição de qualquer átomo na célula unitária é descrita em termos dessa base e a
+  estrutura cristalina completa é obtida pela repetição de tal célula ao longo das
+  direções dos vetores primitivos. A base correspondente para a rede recíproca é
+  dada por
+  $$ 
+    \bvec{b}_1 = 2\pi\frac{\bvec{a}_2 \times \bvec{a}_3}{\bvec{a}_1 \cdot \bvec{a}_2 \times \bvec{a}_3} \mathcomma \qquad 
+    \bvec{b}_2 = 2\pi\frac{\bvec{a}_3 \times \bvec{a}_1}{\bvec{a}_1 \cdot \bvec{a}_2 \times \bvec{a}_3} \mathcomma \qquad
+    \bvec{b}_3 = 2\pi\frac{\bvec{a}_1 \times \bvec{a}_2}{\bvec{a}_1 \cdot \bvec{a}_2 \times \bvec{a}_3} \mathperiod 
+  $$
+}. Geometricamente, tal zona corresponde ao menor volume delimitado por planos
+mediadores dos segmentos de reta gerados pelos vetores de translação da rede recíproca
+\cite{kittel2018introduction}. Para o caso dos matérias em questão, a zona de
+Brillouin é do tipo hexagonal, e se encontra ilustrada ná Figura
+\ref{fig:brillouin}, conjuntamente aos principais pontos de simetria. Desses
+pontos de alta simetria, $K$ e $K'$ coincidem com os mínimos locais do
+\textit{bandgap} do sistema, e por isso são de maior relevância.
 
 Um dos métodos mais utilizados para o cálculo das bandas é a Teoria do Funcional
 Densidade (DFT, do inglês \textit{density-functional theory}), o qual é um
@@ -224,10 +236,10 @@ seriam computacionalmente complexos quando estimados com o uso do método DFT.
 Outra vantagem que será explorada subsequentemente na seção
 \ref{sec_resultados_tmdcs} é a possibilidade da inclusão de um campo magnético
 normal à monocamada do TMDC à descrição do sistema graças à existência de uma
-forma analítica para a hamiltoniana do cristal, o que tornaria impraticável
+forma analítica para a Hamiltoniana do cristal, o que tornaria impraticável
 o uso do método DFT.
 
-No modelo $ k \cdot p $ a hamiltoniana na representação da base
+No modelo $ k \cdot p $ a Hamiltoniana na representação da base
 \begin{equation}
   \left\{ \ket{\Psi_C,\uparrow} ; \ket{\Psi_C,\downarrow} ; \ket{\Psi_V,\uparrow} ; \ket{\Psi_V,\downarrow} \right\}
   \label{eq:basis}
@@ -251,7 +263,7 @@ $ \bvec{K}' $ e $ \bvec{A} $ os vetores que localizam os pontos de simetria $K'$
 No entanto, nesse modelo é necessário aplicar uma translação em tal base tal que
 a origem passe a ser localizada em $K$.
 
-Os termos da expansão da hamiltoniana em função de $ \bvec{k} $ são dados por
+Os termos da expansão da Hamiltoniana em função de $ \bvec{k} $ são dados por
 \begin{align}
   \begin{split}
     &\hat{H}_0 =

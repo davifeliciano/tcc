@@ -32,7 +32,7 @@ def landau_levels(
     n: int = 1,
 ) -> Tuple[NDArray, NDArray]:
     """
-    Returns the sorted eigenvalues of for the first order k.p hamiltonian as a
+    Returns the sorted eigenvalues of for the first order k.p Hamiltonian as a
     function of the fitted parameters, the spin of the considered state and the
     normal magnetic field applied over the lattice
 
@@ -59,7 +59,7 @@ def landau_levels(
     -------
     Tuple[NDArray | None, NDArray | None]
         A tuple of NDArrays being the valence and conduction bands of for the
-        first order k.p hamiltonian. If n = 0, the correspondent level may not
+        first order k.p Hamiltonian. If n = 0, the correspondent level may not
         exist, and the respective band in the tuple will be replaced with None
 
     Raises

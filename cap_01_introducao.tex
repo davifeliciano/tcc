@@ -208,7 +208,7 @@ pontos de alta simetria, $K$ e $K'$ coincidem com os mínimos locais do
 
 Um dos métodos mais utilizados para o cálculo das bandas é a Teoria do Funcional
 Densidade (DFT, do inglês \textit{density-functional theory}), o qual é um
-modelo quântico computacional para a aproximação das soluções de sistemas
+método quântico computacional para a aproximação das soluções de sistemas
 quânticos com múltiplas partículas, amplamente utilizado na química e na física,
 particularmente em física do estado sólido e física da matéria condensada.
 
@@ -225,7 +225,8 @@ particularmente em física do estado sólido e física da matéria condensada.
 No entanto, existem outros modelos para a estimativa das bandas de condução e de
 valência, como o modelo $k \cdot p$\trav também conhecido como modelo de baixas
 energias, descrito em \cite{liu2013tmdc}\trav o qual se propõe a aproximar essas
-bandas em torno de $K$ ou $K'$.
+bandas em torno de determinados pontos de alta simetria, sendo os pontos $K$ e $K'$
+nos TMDCs.
 
 Das vantagens do uso desse modelo pode-se destacar o fato de ser um modelo
 aproximativo analítico, o que facilita o desenvolvimento de uma intuição física
@@ -254,14 +255,11 @@ valência em sua camada original e na camada de condução, respectivamente e
 $ \hat{H}_{kp}^{(i)}(\bvec{k}) $ corresponde ao termo de ordem $ i $ com respeito
 a $ \bvec{k} = (k_x, k_y, k_z) $, um ponto do espaço recíproco. 
 
-Normalmente o vetor $ \bvec{k} $ é escrito em uma base $ \{\bvec{e}_x,\bvec{e}_y,\bvec{e}_z\} $
-tal que $\Gamma$ se encontra na origem,
-$ \bvec{e}_2 = \nicefrac{\bvec{K}'}{|\bvec{K}'|} $, 
-$ \bvec{e}_3 = \nicefrac{\bvec{A}}{|\bvec{A}|} $ e 
-$ \bvec{e}_1 = \bvec{e}_2 \times \bvec{e}_2 $, sendo 
-$ \bvec{K}' $ e $ \bvec{A} $ os vetores que localizam os pontos de simetria $K'$ e $A$, respectivamente.
-No entanto, nesse modelo é necessário aplicar uma translação em tal base tal que
-a origem passe a ser localizada em $K$.
+Normalmente o vetor $ \bvec{k} $ é escrito em uma base positiva 
+$ \{\bvec{e}_x,\bvec{e}_y,\bvec{e}_z\} $ tal que $\Gamma$ se encontra na origem, e
+$ \bvec{e}_2 $ e $ \bvec{e}_3 $ se dão nas direções dos pontos de alta simetria
+$K'$ e $A$, respectivamente. No entanto, nesse modelo é necessário aplicar uma
+translação em tal base tal que a origem passe a ser localizada em $K$.
 
 Os termos da expansão da Hamiltoniana em função de $ \bvec{k} $ são dados por
 \begin{align}
@@ -353,10 +351,10 @@ $\lambda_v$ e $\gamma_i$ ajustem bem as bandas de energia conhecidas em torno de
 $K$.
 
 Como para calcular o valor de $ f(E_F, \Delta, \lambda_c, \lambda_v, \gamma_i) $
-é necessário obter e ordenar os autovalores de $\hat{H}_{kp}$, qualquer método
-do tipo \textit{hill climbing} não se aplica para a solução do problema. Além disso, nesse
-problema o espaço de busca tem uma dimensão considerável, o que também sugere o
-uso de métodos estocásticos como um algoritmo do tipo genético.
+é necessário obter e ordenar os autovalores de $\hat{H}_{kp}$ e o espaço de
+busca tem uma dimensão considerável, qualquer método o uso de métodos
+estocásticos como um algoritmo do tipo genético oferecerá um melhor desempenho
+em relação a algoritmos do tipo \textit{hill climbing}.
 
 A eficácia de um algoritmo genético em um problema como este será posta a prova
 na Seção \ref{sec_resultados_tmdcs}, onde será feito o ajuste da Hamiltoniana do
